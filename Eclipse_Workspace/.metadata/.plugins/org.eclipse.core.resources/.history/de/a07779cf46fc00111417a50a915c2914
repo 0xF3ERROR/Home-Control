@@ -1,0 +1,29 @@
+<?php 
+
+include("tpl_Header.php");
+
+echo "					<h1>:T_GROUP_Edit:</h1>				
+					<div id='Befehle_anzeigen'>
+						<div class='gruppenkontainer'>
+							<form action='index.php?Section=Groups&amp;Action=updateGroup&amp;GroupID=".$this->GroupId."' name='form' method='POST' target=''>
+								<fieldset class='BIM_Group_fieldset'>
+									<legend>:T_GROUP_DATA:</legend>
+									<div class='befehlskontainer' >			
+										:T_GROUP_NAME:: <input type='Text' name='tb_GroupName' value='".$this->Group->getName()."' size='' maxlength='25'>
+									</div>											
+									<div class='buttonkontainer' >		
+										<div class='buttonbar'>	
+											<p class='buttonbar_button'><input type='Submit' class='submit' name='btn_GroupUpdate' value=':T_UPDATE:'></p>
+											<p class='buttonbar_link'><a href='index.php?Section=Groups&amp;Action=GroupManagement'>:T_BACK:</a></p>											
+										</div>
+									</div>								
+								</fieldset>
+							</form>		
+						</div>
+					</div>";
+
+
+include("tpl_Footer.php");
+?>
+
+

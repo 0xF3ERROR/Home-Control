@@ -1,0 +1,20 @@
+<?php
+    include("tpl_Header.php");
+?>
+				<h1>:T_ABOUT:</h1>
+				<br />
+				<br />	
+				<p> 
+					:T_ABOUT_NAME:<br />
+					<br />
+					:T_ABOUT_ADRESS:<br />
+					:T_ABOUT_POSTCODE1:<br /> 
+					:T_ABOUT_POSTCODE2:<br /> 
+					:T_ABOUT_COUNTRY:<br /> 
+					<br />
+					:T_ABOUT_TEXT:<br />	
+					<br />	
+				</p>
+<?php
+include("tpl_Footer.php");
+?>

@@ -1,0 +1,48 @@
+<?php 
+
+include("tpl_Header.php");
+
+if($this->ErrorString)
+	{
+	echo "	<div id='ErrorStringContainer'><p>".$this->ErrorString."</p></div>";
+	}
+if($this->StatusString)
+	{
+	echo "	<div id='StatusStringContainer' align=center><p>".$this->StatusString."</p></div>";
+	}
+echo "
+	<div id='middle'>
+		<div id='m_o_1_sp'></div>
+		<div id='m_m_1_sp'>
+			<div id='m_m_1_sp_inhalt' align='center'> 
+				<h1>:T_COMMAND_EDIT:</h1>				
+				<div id='Befehle_anzeigen'>	
+					<div class='gruppenkontainer'>
+						<form action='index.php?Section=Commands&amp;Action=updateCommand&amp;UserGroupID=".$this->CommandId."' name='form' method='POST' target=''>
+							<fieldset class='BIM_Group_fieldset'>
+								<legend>:T_COMMAND_DATA:</legend>
+								<div class='befehlskontainer' >			
+									:T_COMMAND_NAME:: <input type='Text' name='tb_UserGroupName' value='".$this->Command->getName()."' size='' maxlength='25'>
+										<p class='buttonbar_button'><input type='Submit' class='submit' name='btn_GroupUpdate' value=':T_UPDATE:'></p>	
+								</div>								
+							</fieldset>
+						</form>		
+					</div>";
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
+
+
+
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+echo "
+									<p class='buttonbar_link'><a href='index.php?Section=Commands&amp;Action=CommandManagement'>:T_BACK:</a></p>
+				</div>
+			</div>
+		</div>
+		<div id='m_u_1_sp'></div>
+	</div>";
+
+include("tpl_Footer.php");
+?>
+
+

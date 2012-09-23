@@ -1,0 +1,106 @@
+<?php 
+
+include("tpl_Header.php");
+
+if($this->ErrorString)
+	{
+	echo "	<div id='ErrorStringContainer'><p>".$this->ErrorString."</p></div>";
+	}
+if($this->StatusString)
+	{
+	echo "	<div id='StatusStringContainer' align=center><p>".$this->StatusString."</p></div>";
+	}
+echo "
+	<div id='middle'>
+		<div id='m_o_1_sp'></div>
+		<div id='m_m_1_sp'>
+			<div id='m_m_1_sp_inhalt' align='center'> 
+				<h1>:T_USER_GROUP_EDIT:</h1>				
+				<div id='Befehle_anzeigen'>	
+					<div class='gruppenkontainer'>
+						<form action='index.php?Section=UserGroups&amp;Action=updateUserGroup&amp;UserGroupID=".$this->UserGroupId."' name='form' method='POST' target=''>
+							<fieldset class='BIM_Group_fieldset'>
+								<legend>:T_USER_GROUP_DATA:</legend>
+								<div class='befehlskontainer' >			
+									:T_GROUP_NAME:: <input type='Text' name='tb_UserGroupName' value='".$this->UserGroup->getName()."' size='' maxlength='25'>
+										<p class='buttonbar_button'><input type='Submit' class='submit' name='btn_GroupUpdate' value=':T_UPDATE:'></p>	
+								</div>								
+							</fieldset>
+						</form>		
+					</div>";
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+echo "
+					<p class='buttonbar_link'><a href='index.php?Section=UserGroups&amp;Action=UserGroupManagement'>:T_BACK:</a></p>
+					
+					<h1>:T_USER_GROUP_EDIT:</h1>				
+					<div class='gruppenkontainer'>
+						<fieldset class='BIM_Group_fieldset'>
+							<legend>:T_USER_GROUP_DATA:</legend>";
+
+
+	if ( $this->CommandCollection != NULL) 
+	{
+		foreach( $this->CommandCollection AS $Command )
+		{
+			if ( $Command->getID() != 0 )
+			{
+				$Right = $this->RightCollection->getByUserGroupIdAndCommandId($this->UserGroupId, $Command->getID());
+				
+				echo "
+							<div class='befehlskontainer' >			
+								".$Command->getName()." | 
+								".$Right->getRead()." | 
+								".$Right->getWrite();
+				
+				if( ($Right->getRead() == 1) && ($Right->getWrite() == 1) ) // Read And Write 
+				{
+					echo "
+									<input type='CheckBox' name='tb_Dummy' value='1' disabled='true' checked='checked'>
+									<input type='CheckBox' name='tb_Dummy' value='1' disabled='true' checked='checked'>
+									<p class='buttonbar_link'><a class='fieldset_link' href='index.php?Section=UserGroups&amp;Action=deleteRights&amp;CommandID=".$Command->getId()."&amp;RightID=".$Right->getId()."&amp;UserGroupID=".$this->UserGroupId."'>:T_DELETE_RIGHTS:</a></p>
+									<p class='buttonbar_link'><a class='fieldset_link' href='index.php?Section=UserGroups&amp;Action=deleteRightWrite&amp;CommandID=".$Command->getId()."&amp;RightID=".$Right->getId()."&amp;UserGroupID=".$this->UserGroupId."'>:T_DELETE_WRITE:</a></p>";
+				}
+				else 
+				{
+					if( ($Right->getRead() == 1) && ($Right->getWrite() == 0) ) // Only Read 
+					{
+						echo "
+										<input type='CheckBox' name='tb_Dummy' value='1' disabled='true' checked='checked'>
+										<input type='CheckBox' name='tb_Dummy' value='0' disabled='true'>
+										<p class='buttonbar_link'><a class='fieldset_link' href='index.php?Section=UserGroups&amp;Action=deleteRights&amp;CommandID=".$Command->getId()."&amp;RightID=".$Right->getId()."&amp;UserGroupID=".$this->UserGroupId."'>:T_DELETE_RIGHTS:</a></p>
+										<p class='buttonbar_link'><a class='fieldset_link' href='index.php?Section=UserGroups&amp;Action=insertRightWrite&amp;CommandID=".$Command->getId()."&amp;RightID=".$Right->getId()."&amp;UserGroupID=".$this->UserGroupId."'>:T_ADD_WRITE:</a></p>";
+					}				
+					else // ----------------------------- No Rights
+					{
+						echo "
+										<input type='CheckBox' name='tb_Dummy' value='0' disabled='true'>
+										<input type='CheckBox' name='tb_Dummy' value='0' disabled='true'>					
+										<p class='buttonbar_link'><a class='fieldset_link' href='index.php?Section=UserGroups&amp;Action=insertRightRead&amp;CommandID=".$Command->getId()."&amp;RightID=".$Right->getId()."&amp;UserGroupID=".$this->UserGroupId."'>:T_ADD_READ:</a></p>
+										<p class='buttonbar_link'><a class='fieldset_link' href='index.php?Section=UserGroups&amp;Action=insertRightWrite&amp;CommandID=".$Command->getId()."&amp;RightID=".$Right->getId()."&amp;UserGroupID=".$this->UserGroupId."'>:T_ADD_WRITE:</a></p>";
+					}				
+				}
+				echo "
+							</div>";				
+			}
+		}
+	}
+
+
+
+
+echo "
+						</fieldset>	
+					</div>";
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+echo "
+									<p class='buttonbar_link'><a href='index.php?Section=UserGroups&amp;Action=UserGroupManagement'>:T_BACK:</a></p>
+				</div>
+			</div>
+		</div>
+		<div id='m_u_1_sp'></div>
+	</div>";
+
+include("tpl_Footer.php");
+?>
+
+

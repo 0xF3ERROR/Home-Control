@@ -1,0 +1,113 @@
+<?php
+
+class DeviceFinder extends SystemFinder 
+{
+	
+	/**
+	 * Enter description here...
+	 *
+	 * @param array $RecordSet
+	 * @return DeviceCollection
+	 */
+	private function doDeviceLoad($RecordSet)
+	{
+		$DeviceCollection = new DeviceCollection();
+		foreach ($RecordSet as $Row)
+		{
+			$DeviceCollection->add($this->load($Row));
+		}
+		return $DeviceCollection;
+	}
+	
+	protected  function load($Row)
+	{
+		switch($Row['s_Typ'])
+		{
+			/* TODO: Neue Kommunikations-Verwaltung zu Geräten einbinden..................
+			 * usb4all ist genauso über ip und port erreichbar....
+			 * entfällt demnach an dieser stelle
+			 * 
+			 * Denkbar wären:
+			 * - GPIO Port vom Raspberry Pi unter Linux
+			 * - Serielle Kommunikation direkt ansprechen unter Linux
+			 * - Ausgaben über HDMI oder Video-Out direkt ansprechen unter Linux
+			 * - MediaPlayer Steuerung direkt ansprechen unter Linux
+			 * 
+			*/
+			case "USB4all-Socket":
+				{
+					return new USBForAll($Row['i_ID'],$Row['s_Name'],$Row['s_Typ'],$Row['s_Version'],$Row['s_IP'],$Row['i_Port'],$Row['b_Status'],"TX","RX");
+				}break;
+			case "AvrNetIO":
+				{
+					return new AvrNetIO($Row['i_ID'],$Row['s_Name'],$Row['s_Typ'],$Row['s_Version'],$Row['s_IP'],$Row['i_Port'],$Row['b_Status'],"TX","RX");
+				}break;
+			case "iFrame":
+				{
+					return new iFrame($Row['i_ID'],$Row['s_Name'],$Row['s_Typ'],$Row['s_Version'],$Row['s_IP'],$Row['i_Port'],$Row['b_Status'],"TX","RX");
+				}break;
+			default:
+				return new Device($Row['i_ID'],$Row['s_Name'],$Row['s_Typ'],$Row['s_Version'],$Row['s_IP'],$Row['i_Port'],$Row['b_Status'],"TX","RX");				
+		}
+		
+	}
+	
+	/*
+	 * gibt eine loste mit allen device arten zurück
+	 * 
+	 */
+	public function getAllDevices()
+	{
+		// ARRAY Zuf
+		$DeviceInclidePath = "class/objects/devices";
+		//$scan_device_templates = scandir("class/objects/devices");
+		$scan_device_templates = scandir($DeviceInclidePath);		
+		sort($scan_device_templates);
+		foreach($scan_device_templates AS $device_template)
+			{
+			// Test auf Typ 
+			if (!in_array(substr($device_template, -3, 3), array('..','.','thumbs.db','Thumbs.db' )))
+				{
+				$TemplateArray[$counter]=$device_template;
+				}
+			}
+		return $TemplateArray;	
+	}
+	
+	
+	/**
+	 * Gibt alle Geräte zurück
+	 *
+	 * @param 
+	 * @return Alle Geräte 
+	 *
+	 */
+	public function findAll()
+	{
+	   	$Sql="select i_ID,s_Name,s_Typ,s_Version,s_IP,i_Port,b_Status
+		 from tbl_devices";
+		return $this->doDeviceLoad($this->MySql->executeQuery($Sql));		
+	}
+	
+	
+	/**
+	 * Suche nach Gerät
+	 *
+	 * @param int $DeviceId des zu suchenden Gerätes
+	 * @return gesuchtes Gerät 
+	 *
+	 */
+	public function findByID($DeviceID)
+	{
+	   	$Sql="select i_ID,s_Name,s_Typ,s_Version,s_IP,i_Port,b_Status
+		 from tbl_devices
+		where i_ID='".$DeviceID."'";
+		return  $this->doDeviceLoad($this->MySql->executeQuery($Sql))->getByIndex(0);
+	}
+
+
+	
+}
+
+
+?>

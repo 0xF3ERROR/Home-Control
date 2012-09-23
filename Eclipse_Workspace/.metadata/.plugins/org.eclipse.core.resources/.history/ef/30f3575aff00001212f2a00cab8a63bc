@@ -1,0 +1,476 @@
+<?php
+/**
+ * class cls_Controler_Groups
+ *
+ * Description for class cls_Controler_Groups
+ *
+ * @author:
+*/
+class Controler_UserGroups  
+{
+
+	/**
+	 * cls_Controler_Groups constructor
+	 *
+	 * @param 
+	 */
+	function __construct() {
+
+	}
+		
+	
+	public function start()	{
+		$Request= new Request();
+		switch($Request->getAsString('Action'))
+			{					
+			case "UserGroupManagement":
+				{
+				$this->showUserGroupManagement();
+				}break;				
+				
+			case "showAddNewUserGroup":
+				{
+				$this->showAddNewUserGroup();
+				}break;
+				
+			case "addNewUserGroup":
+				{
+				$this->addNewUserGroup();
+				//$this->showUserGroupManagement();
+				}break;			
+				
+			case "showEditUserGroup":
+				{
+				$this->showEditUserGroup();
+				}break;		
+				
+			case "showEditGroupUsers":
+				{
+				$this->showEditGroupUsers();
+				}break;
+				
+			case "updateUserGroup":
+				{
+				$this->updateUserGroup();
+				}break;	
+											
+			case "deleteUserGroup":
+				{
+				$this->deleteUserUserGroup();
+				}break;
+				
+			case "insertRightRead":
+				{
+				$this->insertRightRead();
+				}break;	
+				
+			case "insertRightWrite":
+				{
+				$this->insertRightWrite();
+				}break;	
+				
+			case "deleteRightWrite":
+				{
+				$this->deleteRightWrite();
+				}break;	
+				
+			case "deleteRights":
+				{
+				$this->deleteRights();
+				}break;	
+				
+			
+			default:
+				$this->showUserGroupManagement();
+			}
+	}
+	
+
+	/*
+	 * 
+	 * 	Group Management
+	 * 
+	 */	
+	
+	/**
+	 * showGroupManagement
+	 *
+	 * @return bool This is the return value description
+	 *
+	 */
+	public function showUserGroupManagement($ErrorString="",$StatusString="")
+		{
+		if( Controler_Main::getInstance()->getUserLevel() < BACKEND_USERLEVEL )
+			{
+			$ControlerStart= new Controler_Start();
+			$ControlerStart->start();
+			return false;
+			}
+		$Request= new Request();
+		/* TODO+-: Alle Gruppen auflisten */ 
+		$UserGroupFinder= new UserGroupFinder();
+		$UserGroupCollection = $UserGroupFinder->findAll();
+		
+		$Template=Template::getInstance("tpl_BE_UserGroupManager.php");  	
+		$Template->assign("UserGroupCollection",$UserGroupCollection);
+		$Template->assign("ErrorString",$ErrorString);
+		$Template->assign("StatusString",$StatusString);
+		$Template->render();
+		}
+		
+	/**
+	 * showAddNewGroup
+	 *
+	 * @return bool This is the return value description
+	 *
+	 */	
+	public function showAddNewUserGroup($ErrorString="",$StatusString="")
+		{
+		if( Controler_Main::getInstance()->getUserLevel() < BACKEND_USERLEVEL )
+			{
+			$ControlerStart= new Controler_Start();
+			$ControlerStart->start();
+			return false;
+			}
+		$Request= new Request();
+		$Template=Template::getInstance("tpl_BE_UserGroupNew.php");  
+		$Template->assign("ErrorString",$ErrorString);
+		$Template->assign("StatusString",$StatusString);
+		$Template->render();
+		}
+		
+	/**
+	 * addNewGroup
+	 *
+	 * @return void This is the return value description
+	 *
+	 */
+	public function addNewUserGroup($ErrorString="",$StatusString="")
+	{
+		if( Controler_Main::getInstance()->getUserLevel() < BACKEND_USERLEVEL )
+		{
+			$ControlerStart= new Controler_Start();
+			$ControlerStart->start();
+			return false;
+		}
+		$Request= new Request();
+		$ErrorString="";
+		$StatusString="";
+		$UserGroupFinder= new UserGroupFinder();		
+		$Controler_Main= Controler_Main::getInstance();
+		if(strlen($Request->getAsString("tb_UserGroupName"))<3){$ErrorString.=":T_GROUP_ERROR1:";}
+		if(strlen($Request->getAsString("tb_UserGroupName")))
+		{
+			$UserGroup=$UserGroupFinder->findByName($Request->getAsString("tb_UserGroupName"));
+			if($UserGroup->getId()!=0){$ErrorString.=":T_GROUP_ERROR2:";}
+		}					
+		if(strlen($ErrorString)!=0)
+		{
+			$this->showAddNewUserGroup($ErrorString, $StatusString);
+			return false;
+		}
+		//$UserGroup= new UserGroup();
+		
+		$UserGroupManager= new UserGroupManager();
+		//var_dump("und den GroupFinder eintragen");
+		$UserGroup = $Request->getAsString("tb_UserGroupName");
+		$UserGroupManager->insert($UserGroup);// Gruppe in die db eintragen		
+		/* TODO: Prüfung */
+		$this->showUserGroupManagement("",":T_USER_GROUP_INSERTED_STATUS:");
+	}	
+		
+	/**
+	 * showEditGroup
+	 *
+	 * @return bool This is the return value description
+	 *
+	 */	
+	public function showEditUserGroup($ErrorString="",$StatusString="")
+		{
+		if( Controler_Main::getInstance()->getUserLevel() < BACKEND_USERLEVEL )
+			{
+			$ControlerStart= new Controler_Start();
+			$ControlerStart->start();
+			return false;
+			}
+		$Request= new Request();
+		$UserGroupID = $Request->getAsInt("UserGroupID");
+		$UserGroup = UserGroup::getEmptyInstance();
+		$UserGroupFinder = new UserGroupFinder();
+		$UserGroup = $UserGroupFinder->findById($UserGroupID);
+		
+		
+		$CommandFinder = new CommandFinder();
+		$CommandCollection = $CommandFinder->findAll();
+		
+		$RightFinder = new RightFinder();
+		$RightCollection = $RightFinder->findByUserGroupId($UserGroupID);
+		
+		$Template=Template::getInstance("tpl_BE_UserGroupEdit.php");  
+		$Template->assign("CommandCollection",$CommandCollection);		
+		$Template->assign("RightCollection",$RightCollection);
+		$Template->assign("UserGroup",$UserGroup);
+		$Template->assign("UserGroupId",$UserGroupID);
+		$Template->assign("ErrorString",$ErrorString);
+		$Template->assign("StatusString",$StatusString);
+		$Template->render();
+		}
+		
+	/**
+	 * updateGroup
+	 *
+	 * @return void This is the return value description
+	 *
+	 */
+	public function updateUserGroup($ErrorString="",$StatusString="")
+	{
+		if( Controler_Main::getInstance()->getUserLevel() < BACKEND_USERLEVEL )
+		{
+			$ControlerStart= new Controler_Start();
+			$ControlerStart->start();
+			return false;
+		}
+		$Request= new Request();
+		$ErrorString="";
+		$StatusString="";
+		$UserGroupFinder= new UserGroupFinder();		
+		$Controler_Main= Controler_Main::getInstance();
+		if(strlen($Request->getAsString("tb_UserGroupName"))<3){$ErrorString.=":T_USER_GROUP_ERROR1:";}
+		if(strlen($Request->getAsString("tb_UserGroupName")))
+		{
+			$UserGroup=$UserGroupFinder->findByName($Request->getAsString("tb_UserGroupName"));
+			if($UserGroup->getId()!=0){$ErrorString.=":T_USER_GROUP_ERROR2:";}
+		}					
+		if(strlen($ErrorString)!=0)
+		{
+			$this->showEditUserGroup($ErrorString, $StatusString);
+			return false;
+		}		
+		$UserGroupManager= new UserGroupManager();
+		//var_dump("und den GroupFinder eintragen");
+		$UserGroupName = $Request->getAsString("tb_UserGroupName");	
+		$UserGroupID = $Request->getAsString("UserGroupID");
+		$UserGroupManager->updateByID($UserGroupID,$UserGroupName);// Gruppe in die db eintragen		
+		/* TODO: Prüfung */
+		
+		$this->showEditUserGroup("",":T_USER_GROUP_UPDATED_STATUS:");
+	}	
+	
+	/**
+	 * showEditGroupUsers
+	 *
+	 * @return bool This is the return value description
+	 *
+	 */	
+	public function showEditGroupUsers($ErrorString="",$StatusString="")
+		{
+		if( Controler_Main::getInstance()->getUserLevel() < BACKEND_USERLEVEL )
+			{
+			$ControlerStart= new Controler_Start();
+			$ControlerStart->start();
+			return false;
+			}
+		$Request= new Request();
+		$ID = $Request->getAsInt("UserGroupID");
+		$UserGroup = UserGroup::getEmptyInstance();
+		$UserGroupFinder = new UserGroupFinder();
+		$UserGroup = $UserGroupFinder->findById($ID);
+		$UserFinder = new UserUserFinder();
+		$UserCollection = $UserFinder->findAll();	
+		$Template=Template::getInstance("tpl_BE_GroupUsers.php");  
+		$Template->assign("UserGroup",$UserGroup);
+		$Template->assign("UserCollection",$UserCollection);
+		$Template->assign("GroupId",$ID);
+		$Template->assign("ErrorString",$ErrorString);
+		$Template->assign("StatusString",$StatusString);
+		$Template->render();
+		}
+		
+	/**
+	 * updateGroupUsers
+	 *
+	 * @return void This is the return value description
+	 *
+	 */
+	public function updateGroupUsers($ErrorString="",$StatusString="")
+	{
+		if( Controler_Main::getInstance()->getUserLevel() < BACKEND_USERLEVEL )
+		{
+			$ControlerStart= new Controler_Start();
+			$ControlerStart->start();
+			return false;
+		}
+		$Request= new Request();
+		$ErrorString="";
+		$StatusString="";
+		$UserGroupFinder= new UserGroupFinder();		
+		$Controler_Main= Controler_Main::getInstance();
+		if(strlen($Request->getAsString("tb_UserGroupName"))<3){$ErrorString.=":T_USER_GROUP_ERROR1:";}
+		if(strlen($Request->getAsString("tb_UserGroupName")))
+		{
+			$UserGroup=$UserGroupFinder->findByName($Request->getAsString("tb_UserGroupName"));
+			if($Group->getId()!=0){$ErrorString.=":T_USER_GROUP_ERROR2:";}
+		}					
+		if(strlen($ErrorString)!=0)
+		{
+			$this->showEditGroup($ErrorString, $StatusString);
+			return false;
+		}
+		$UserGroup= new UserGroup();
+		
+		$UserGroupManager= new UserGroupManager();
+		//var_dump("und den GroupFinder eintragen");
+		$UserGroup = $Request->getAsString("tb_UserGroupName");
+		$UserGroupID = $Request->getAsString("UserGroupID");
+		//$GroupManager->updateByID($GroupID,$Group);// Gruppe in die db eintragen		
+		/* TODO: Prüfung */
+		$this->showEditUserGroup("",":T_USER_GROUP_UPDATED_STATUS:");
+	}	
+	
+	/**
+	 * 
+	 * 	Delete Group
+	 * 
+	 */	
+	public function deleteUserUserGroup($ErrorString="",$StatusString="")
+	{
+		if( Controler_Main::getInstance()->getUserLevel() < BACKEND_USERLEVEL )
+		{
+			$ControlerStart= new Controler_Start();
+			$ControlerStart->start();
+			return false;
+		}
+		$Request = new Request();
+		$ID=$Request->getAsInt("UserGroupID");
+		$UserGroupManager = new UserGroupManager();
+		$UserGroupManager->deleteById($ID);	
+		/* TODO: Rückgabe prüfen!!! */			
+		$this->showUserGroupManagement();
+		$this->showEditUserGroup("",":T_USER_GROUP_DELETE_STATUS:");
+	}
+	
+
+			//  insertRightRead insertRightWrite deleteRights | CommandID RightID UserGroupId
+			
+	
+
+
+	
+	/**
+	 * 
+	 * 	Insert insertRightWrite
+	 * 
+	 */	
+	public function insertRightRead($ErrorString="",$StatusString="")
+	{
+		if( Controler_Main::getInstance()->getUserLevel() < BACKEND_USERLEVEL )
+		{
+			$ControlerStart= new Controler_Start();
+			$ControlerStart->start();
+			return false;
+		}
+		$Request = new Request();
+		$CommandID=$Request->getAsInt("CommandID");
+		$RightID=$Request->getAsInt("RightID");
+		$UserGroupId=$Request->getAsInt("UserGroupID");		
+		$RightFinder = new RightFinder();			
+		$RightManager = new RightManager();			
+		if($RightID == 0)
+		{			
+			$RightManager->insertAll( $UserGroupId, $CommandID, true, false );			
+		}	
+		else
+		{
+			$RightManager->updateWriteById( $RightID,false );				
+		}		
+		/* TODO: Rückgabe prüfen!!! */		
+		$this->showEditUserGroup("",":T_USER_GROUP_INSERT_READ_STATUS:");
+	}
+	
+
+	
+	/**
+	 * 
+	 * 	Insert insertRightWrite
+	 * 
+	 */	
+	public function insertRightWrite($ErrorString="",$StatusString="")
+	{
+		if( Controler_Main::getInstance()->getUserLevel() < BACKEND_USERLEVEL )
+		{
+			$ControlerStart= new Controler_Start();
+			$ControlerStart->start();
+			return false;
+		}
+		$Request = new Request();
+		$CommandID=$Request->getAsInt("CommandID");
+		$RightID=$Request->getAsInt("RightID");
+		$UserGroupId=$Request->getAsInt("UserGroupID");		
+		$RightManager = new RightManager();		
+		if($RightID == 0)
+		{			
+			$RightManager->insertAll( $UserGroupId, $CommandID, true, true );			
+		}	
+		else
+		{
+			$RightManager->updateWriteById($RightID,true );				
+		}		
+		/* TODO: Rückgabe prüfen!!! */			
+		$this->showEditUserGroup("",":T_USER_GROUP_INSERT_WRITE_STATUS:");
+	}
+
+	
+	/**
+	 * 
+	 * 	Delete deleteRights
+	 * 
+	 */	
+	public function deleteRightWrite($ErrorString="",$StatusString="")
+	{
+		if( Controler_Main::getInstance()->getUserLevel() < BACKEND_USERLEVEL )
+		{
+			$ControlerStart= new Controler_Start();
+			$ControlerStart->start();
+			return false;
+		}
+		$Request = new Request();
+		$CommandID=$Request->getAsInt("CommandID");
+		$RightID=$Request->getAsInt("RightID");
+		$UserGroupId=$Request->getAsInt("UserGroupID");	
+		$RightManager = new RightManager();
+		$RightManager->updateWriteById($RightID,false);	
+		/* TODO: Rückgabe prüfen!!! */			
+		$this->showEditUserGroup();
+		$this->showEditUserGroup("",":T_USER_GROUP_DELETE_WRITE_STATUS:");
+	}
+	
+	/**
+	 * 
+	 * 	Delete deleteRights
+	 * 
+	 */	
+	public function deleteRights($ErrorString="",$StatusString="")
+	{
+		if( Controler_Main::getInstance()->getUserLevel() < BACKEND_USERLEVEL )
+		{
+			$ControlerStart= new Controler_Start();
+			$ControlerStart->start();
+			return false;
+		}
+		$Request = new Request();
+		$CommandID=$Request->getAsInt("CommandID");
+		$RightID=$Request->getAsInt("RightID");
+		$UserGroupId=$Request->getAsInt("UserGroupID");	
+		$RightManager = new RightManager();
+		$RightManager->deleteById($RightID);	
+		/* TODO: Rückgabe prüfen!!! */			
+		$this->showEditUserGroup();
+		$this->showEditUserGroup("",":T_USER_GROUP_DELETE_RIGHTS_STATUS:");
+	}
+	
+	
+	
+	
+	
+}
+?>

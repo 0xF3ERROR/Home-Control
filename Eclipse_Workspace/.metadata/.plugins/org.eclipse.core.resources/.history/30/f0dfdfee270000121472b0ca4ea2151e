@@ -1,0 +1,46 @@
+<?php
+
+/* TODO: 0. System Konfiguration */
+define("FORUM_COMMENTS_PER_PAGE",30);// gibt an wie viele Commentare im Forum pro seite angezeigt werden sollen
+define("GBOOK_COMMENTS_PER_PAGE",30);// gibt an wie viele Commentare im Gästebuch pro seite angezeigt werden sollen
+define("MENU_MODE","OFFLINE");// ALL alles wird im menü angezeigt. ONLINE = gbook,news,Turnier,Forum,Anmeldung,Gallery. OFFLINE= catering,server,gallery,turnier,Forum,msg,Download
+define("BAD_WORD","pisser,arschloch,wixxer,penner,idiot,remaker,tekknigga,hurensohn,homo");// komma getrennt bitte alle wörter aufschreiben die aus allen nachrichten gbook forum news geparst werden sollen, groß und kleinschreibung ist egal
+define("SYSTEM_VERSION","0.0.0.1");// die Version des Intranets
+
+define("RANDOM_PASSWORD_LENGTH","6");
+define("FQDN","Media-Station");
+define("SEND_PASSWORD_EMAIL",true);
+
+define("Device_Template_Path", "class/objects/Device_Templates" );
+// Datenbank Connection 
+
+/*
+define("DB_SERVER","localhost");	// die adresse des Mysql server
+define("DB_DATABASE","db_home_control");		// die datenbank die ausgewählt werden soll	
+define("DB_USER","root");			// der User Mit dem sich das system einloggen soll
+define("DB_PASS","jsiijfpo4j0uwpswdfjpw");		// Das Passwort für den server
+//define("DB_USER","HC_DB_USER");			// der User Mit dem sich das system einloggen soll
+//define("DB_PASS","jsiijo4j0dduwpswdfjpw");		// Das Passwort für den server
+ */
+
+define("DB_SERVER","192.168.60.110");	// die adresse des Mysql server
+define("DB_DATABASE","db_home_control");		// die datenbank die ausgewählt werden soll	
+define("DB_USER","HC_DB_USER");			// der User Mit dem sich das system einloggen soll
+define("DB_PASS","jsiijo4j0dduwpswdfjpw");		// Das Passwort für den server
+
+define("AUTHOR","0xF3ERROR");	//der domain name
+define("KEY_WORDS","Home-Control");	//der domain name
+define("DOMAIN_NAME","Home-Control");	//der domain name
+define("HEAD_TITLE","Die freie Gebäudesteuerung");	
+define("LANGUAGE_GER","Ger");
+
+define("STORE_FOLDER","Data");// der ordner mit den 
+define("MAXSPACE","3062");// Die Speichergröße in MB start 3 gb
+
+/*
+ * Home-Control Konfiguration
+ */
+define("BACKEND_USERLEVEL",8);
+define("BADLOGIN_ACTIVATED",True);// gibt an ob ein fehlerhafter versucht sich ins system einzuloggen  gez�hlt wird
+
+?>

@@ -1,0 +1,24 @@
+<?php
+include("tpl_Header.php");
+?>
+				<h1>:T_LOGIN_TEXT:</h1>
+				<form enctype="multipart/form-data" action="index.php?Section=Login&amp;Action=UserLogin" method="post">
+					<table   style="margin:auto;">
+						<tr>
+							<td>:T_USER_NAME: </td>
+							<td colspan="2"><input style="width:95%;" type="text" id="tb_Name" name="tb_Name" value="" size="" maxlength="" /> </td>
+						</tr>
+						<tr>
+							<td>:T_PASSWORD: </td>
+							<td colspan="2"><input style="width:95%;" type="password" name="tb_Pass" value="" size="" maxlength=""  /> </td>
+						</tr>
+						<tr>
+							<td> </td>
+							<td><input type="submit" name="" value=":T_LOGIN:" /> </td>
+							<td> </td>
+						</tr>
+					</table>
+				</form>
+<?php
+include("tpl_Footer.php");
+?>

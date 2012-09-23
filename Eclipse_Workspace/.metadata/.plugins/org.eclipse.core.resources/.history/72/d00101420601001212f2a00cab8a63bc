@@ -1,0 +1,617 @@
+<?php
+
+/**
+ * class cls_Controler_Menues
+ *
+ * Description for class cls_Controler_Menue
+ *
+ * @author:
+*/
+class Controler_Menues  
+{
+
+	/**
+	 * cls_Controler_Menues
+	 *
+	 * @param 
+	 */
+	function __construct() {
+
+	}
+	
+	
+	public function start()	{
+		$Request= new Request();
+		switch($Request->getAsString('Action'))
+			{	
+			case "MenueManagement":
+				{
+				$this->showMenueManagement();
+				}break;						
+				
+			case "showAddNewMenue":
+				{
+				$this->showAddNewMenue();
+				}break;
+				
+			case "addNewMenue":
+				{
+				$this->addNewMenue();
+				}break;			
+				
+			case "showEditMenue":
+				{
+				$this->showEditMenue();
+				}break;		
+								
+			case "updateMenueName":
+				{
+				$this->updateMenueName();
+				$this->showEditMenue();
+				}break;	
+				
+			case "showEditContent":
+				{
+				$this->showEditContent();
+				}break;
+				
+			case "updateContentName":
+				{
+				$this->updateContentName();
+				}break;	
+				
+			case "updateContent":
+				{
+				//if ( ! $this->addNewMenue() ) 
+				$error = $this->updateContent();
+				$this->showEditMenue($error);
+				//$this->showMenueManagement();
+				}break;	
+							
+			case "insertMenueLink":
+				{
+				$this->insertMenueLink();
+				$this->showEditMenue();
+				}break;	
+							
+			case "insertMenueCommand":
+				{
+				$this->insertMenueCommand();
+				$this->showEditMenue();
+				}break;	
+							
+			case "insertContentGroupName":
+				{
+				$this->insertContentGroupName();
+				$this->showEditMenue();
+				}break;	//insertMenueGroupName
+								
+			case "deleteMenueLink":
+				{
+				$this->deleteMenueLink();
+				$this->showEditMenue();
+				}break;
+								
+			case "deleteMenueContent":
+				{
+				$this->deleteMenueContent();
+				$this->showEditMenue();
+				}break;
+								
+			case "deleteMenue":
+				{
+				$this->deleteMenue();
+				$this->showMenueManagement();
+				}break;
+								
+			case "deleteContentGroup":
+				{
+				if ( ! $this->deleteContentGroup() )	$this->showEditMenue(":T_DELETE_ERROR:","");
+				//$this->deleteContentGroup();
+				$this->showEditMenue();
+				}break;
+				
+			default:
+				$this->showMenueManagement();
+			}
+	}
+	
+	
+	/**
+	 * 
+	 * 	Menue Management
+	 * 
+	 */	
+	public function showMenueManagement($ErrorString="",$StatusString="")
+		{
+		if( Controler_Main::getInstance()->getUserLevel() < BACKEND_USERLEVEL )
+			{
+			$ControlerStart= new Controler_Start();
+			$ControlerStart->start();
+			return false;
+			}
+		$Request= new Request();	
+		$MenueFinder = new MenueFinder();
+		$MenueCollection = $MenueFinder->findAll();			
+		$Template=Template::getInstance("tpl_BE_MenueManager.php");  
+		$Template->assign("MenueCollection",$MenueCollection);
+		$Template->assign("ErrorString",$ErrorString);
+		$Template->assign("StatusString",$StatusString);
+		$Template->render();
+		}
+			
+	/**
+	 * showAddNewMenue
+	 *
+	 * @return bool This is the return value description
+	 *
+	 */	
+	public function showAddNewMenue($ErrorString="",$StatusString="")
+		{
+		if( Controler_Main::getInstance()->getUserLevel() < BACKEND_USERLEVEL )
+			{
+			$ControlerStart= new Controler_Start();
+			$ControlerStart->start();
+			return false;
+			}
+		$Request= new Request();
+		$Template=Template::getInstance("tpl_BE_MenueNew.php");  
+		$Template->assign("ErrorString",$ErrorString);
+		$Template->assign("StatusString",$StatusString);
+		$Template->render();
+		}
+		
+	/**
+	 * addNewMenue
+	 *
+	 * @return void This is the return value description
+	 *
+	 */
+	public function addNewMenue($ErrorString="",$StatusString="")
+	{
+		if( Controler_Main::getInstance()->getUserLevel() < BACKEND_USERLEVEL )
+		{
+			$ControlerStart= new Controler_Start();
+			$ControlerStart->start();
+			return false;
+		}
+		$Request= new Request();
+		$ErrorString="";
+		$StatusString="";
+		$MenueFinder= new MenueFinder();		
+		$Controler_Main= Controler_Main::getInstance();
+		if(strlen($Request->getAsString("tb_MenueName"))<3){$ErrorString.=":T_MENUE_ERROR1:";}
+		if(strlen($Request->getAsString("tb_MenueName")))
+		{
+			$Menue=$MenueFinder->findByName($Request->getAsString("tb_MenueName"));
+			if($Menue->getId()!=0){$ErrorString.=":T_MENUE_ERROR2:";}
+		}					
+		if(strlen($ErrorString)!=0)
+		{			
+			return	$this->showMenueManagement($ErrorString);
+		}
+		$Menue= new Menue();
+		
+		$MenueManager= new MenueManager();
+		$Menue->setName($Request->getAsString("tb_MenueName"));
+		if ( $MenueManager->insert($Menue) ) $this->showMenueManagement("",":T_MENUE_ADD_NEW_STATUS:");
+		else $this->showMenueManagement(":T_MENUE_ADD_NEW_ERROR:");
+	}
+
+	
+	
+	/**
+	 * showEditMenue
+	 *
+	 * @return bool This is the return value description
+	 *
+	 */	
+	public function showEditMenue($ErrorString="",$StatusString="")
+		{
+		if( Controler_Main::getInstance()->getUserLevel() < BACKEND_USERLEVEL )
+			{
+			$ControlerStart= new Controler_Start();
+			$ControlerStart->start();
+			return false;
+			}
+		$Request= new Request();
+		$ID = $Request->getAsInt("MenueID");
+		
+		
+		$Menue = Menue::getEmptyInstance();
+		$MenueFinder = new MenueFinder();
+		$Menue = $MenueFinder->findById($ID);
+		$MenueCollection = $MenueFinder->findAll();
+		
+		$ContentGroupFinder = new ContentGroupFinder();
+		$ContentGroupCollection = $ContentGroupFinder->findAll();
+		//$MenueGroup = MenueGroup::getEmptyInstance();
+		//$MenueGroup = $MenueGroupFinder->findById($ID);
+		
+		$ContentFinder = new ContentFinder();
+		$ContentCollection = $ContentFinder->findAll();
+		
+		$CommandFinder = new CommandFinder();	
+		$CommandCollection = $CommandFinder->findAll();
+		
+		$ViewFinder = new ViewFinder();	
+		$ViewCollection = $ViewFinder->findAll();
+		
+		$Template=Template::getInstance("tpl_BE_MenueEdit.php");  
+		$Template->assign("Menue",$Menue);
+		$Template->assign("MenueCollection",$MenueCollection);
+		$Template->assign("ContentGroupCollection",$ContentGroupCollection);
+		$Template->assign("ContentCollection",$ContentCollection);
+		$Template->assign("CommandCollection",$CommandCollection);
+		$Template->assign("ViewCollection",$ViewCollection);
+		$Template->assign("MenueId",$ID);
+		$Template->assign("ErrorString",$ErrorString);
+		$Template->assign("StatusString",$StatusString);
+		if ( isset($StatusString)) $Template->render(true, true);
+		else $Template->render();
+		}
+		
+	/**
+	 * updateMenueName
+	 *
+	 * @return void This is the return value description
+	 *
+	 */
+	public function updateMenueName($ErrorString="",$StatusString="")
+	{
+		if( Controler_Main::getInstance()->getUserLevel() < BACKEND_USERLEVEL )
+		{
+			$ControlerStart= new Controler_Start();
+			$ControlerStart->start();
+			return false;
+		}
+		$Request= new Request();
+		$ErrorString="";
+		$StatusString="";
+		$MenueFinder= new MenueFinder();		
+		$Controler_Main= Controler_Main::getInstance();
+		if(strlen($Request->getAsString("tb_MenueName"))<3){$ErrorString.=":T_Menue_ERROR1:";}
+		if(strlen($Request->getAsString("tb_MenueName")))
+		{
+			$Group=$MenueFinder->findByName($Request->getAsString("tb_MenueName"));
+			if($Group->getId()!=0){$ErrorString.=":T_Meneu_ERROR2:";}
+		}					
+		if(strlen($ErrorString)!=0)
+		{
+			$this->showEditMenue($ErrorString, $StatusString);
+			return false;
+		}
+		$Menue= new Menue();
+		
+		$MenueManager= new MenueManager();
+		//var_dump("und den MenueFinder eintragen");
+		$MenueID = $Request->getAsString("MenueID");
+		$MenueName = $Request->getAsString("tb_MenueName");
+		$MenueManager->updateNameByID($MenueID,$MenueName);// Menuename aktualisieren		
+		/* TODO: Prüfung */
+	}	
+	
+	
+	/**
+	 * showEditContent
+	 *
+	 * @return bool This is the return value description
+	 *
+	 */	
+	public function showEditContent($ErrorString="",$StatusString="")
+		{
+		if( Controler_Main::getInstance()->getUserLevel() < BACKEND_USERLEVEL )
+			{
+			$ControlerStart= new Controler_Start();
+			$ControlerStart->start();
+			return false;
+			}
+		$Request= new Request();
+		$Template=Template::getInstance("tpl_BE_MenueContentEdit.php"); 
+
+		$MenueID = $Request->getAsString("MenueID");
+		$ContentID = $Request->getAsString("ContentID");
+		$ContentFinder = new ContentFinder();
+		$Content = $ContentFinder->findById($ContentID);
+		
+		$Template->assign("ContentID",$Content->getID());
+		$Template->assign("MenueID",$Content->getMenue_ID());
+		$Template->assign("ContentName",$Content->getName());
+		
+		$Template->assign("ErrorString",$ErrorString);
+		$Template->assign("StatusString",$StatusString);
+		$Template->render();
+		}
+	
+	
+	/**
+	 * updateContentName
+	 *
+	 * @return void This is the return value description
+	 *
+	 */
+	public function updateContentName($ErrorString="",$StatusString="")
+	{
+		if( Controler_Main::getInstance()->getUserLevel() < BACKEND_USERLEVEL )
+		{
+			$ControlerStart= new Controler_Start();
+			$ControlerStart->start();
+			return false;
+		}
+		$Request= new Request();
+		$ErrorString="";
+		$StatusString="";
+		$ContentFinder= new ContentFinder();		
+		$Controler_Main= Controler_Main::getInstance();
+		if(strlen($Request->getAsString("tb_ContentName"))<3){$ErrorString.=":T_Menue_ERROR1:";}
+		if(strlen($Request->getAsString("tb_ContentName")))
+		{
+			$Content=$ContentFinder->findByNameAndMenueID($Request->getAsString("tb_ContentName"),$Request->getAsString("MenueID") );
+			if($Content->getId()!=0){$ErrorString.=":T_Meneu_ERROR2:";}
+		}					
+		if(strlen($ErrorString)!=0)
+		{
+			$this->showEditMenue($ErrorString, $StatusString);
+			return false;
+		}		
+		$ContentManager= new ContentManager();
+		//var_dump("und den MenueFinder eintragen");
+		$ContentID = $Request->getAsString("ContentID");
+		$ContentName = $Request->getAsString("tb_ContentName");
+		if( $ContentManager->updateById($ContentID,$ContentName) ) $this->showEditMenue("",":T_MENUE_UPDATE_NAME_STATUS:");
+		else $this->showEditMenue(":T_MENUE_UPDATE_NAME_ERROR:");
+	}	
+		
+	/**
+	 * insertMenueLink
+	 *
+	 * @return void This is the return value description
+	 *
+	 */
+	public function insertMenueLink($ErrorString="",$StatusString="")
+	{
+		if( Controler_Main::getInstance()->getUserLevel() < BACKEND_USERLEVEL )
+		{
+			$ControlerStart= new Controler_Start();
+			$ControlerStart->start();
+			return false;
+		}
+		$Request= new Request();
+		$ErrorString="";
+		$StatusString="";
+		$MenueFinder= new MenueFinder();		
+		//$Controler_Main= Controler_Main::getInstance();
+		$Content = Content::getEmptyInstance();	
+		$ContentFinder= new ContentFinder();	
+		$ContentManager= new ContentManager();		
+	
+		$LinkName = $Request->getAsString("tb_LinkName");
+		$MenueID = $Request->getAsString("MenueID");
+		$InsertMenueID = $Request->getAsString("InsertMenueID");
+		
+		
+		/* TODO: Prüfung */
+		/* Die Verlinkte MenueID wird im Namen gespeichert... */
+		$Content=$ContentFinder->findByNameAndMenueID($InsertMenueID, $MenueID);
+		
+		
+		//$Content = $ContentCollection->getByIndex(0);
+		
+		
+		$ID = $Content->getId();
+		if($ID!=0){$ErrorString.=":T_MENUE_ERROR2:";}
+							
+		if(strlen($ErrorString)!=0)
+		{
+			$this->showEditMenue($ErrorString, $StatusString);
+			return false;
+		}
+		
+		//$Menue = $MenueFinder->findById($InsertMenueID);		
+		//var_dump("und den MenueFinder eintragen");tb_LinkName
+		return $ContentManager->insertMenueLinkByMenueIdAndLinkedMenueIdInName($MenueID,$InsertMenueID);		
+		/* TODO: Prüfung */
+	}
+		
+	/**
+	 * insertMenueCommand
+	 *
+	 * @return void This is the return value description
+	 *
+	 */
+	public function insertMenueCommand($ErrorString="",$StatusString="")
+	{
+		if( Controler_Main::getInstance()->getUserLevel() < BACKEND_USERLEVEL )
+		{
+			$ControlerStart= new Controler_Start();
+			$ControlerStart->start();
+			return false;
+		}
+		$Request= new Request();
+		$ErrorString="";
+		$StatusString="";
+		$MenueFinder= new MenueFinder();		
+		//$Controler_Main= Controler_Main::getInstance();	
+		$ContentFinder= new ContentFinder();
+		$ContentManager= new ContentManager();
+		$CommandFinder= new CommandFinder();
+		$LinkName = $Request->getAsString("tb_LinkName");
+		$MenueID = $Request->getAsString("MenueID");
+		$InsertCommandID = $Request->getAsString("InsertCommandID");
+		$InsertViewID = $Request->getAsString("InsertDisplayID");
+		$InsertCommandGroupID = $Request->getAsString("InsertContentGroupID");
+		/* TODO: Prüfung */
+		$ContentCollection=$ContentFinder->findByMenueIdAndCommandId($MenueID, $InsertCommandID, $InsertViewID);
+		$Content = $ContentCollection->getByIndex(0);		
+		$ID = $Content->getId();
+		if($ID!=0){$ErrorString.=":T_MENUE_ERROR2:";}
+							
+		if(strlen($ErrorString)!=0)
+		{
+			$this->showEditMenue($ErrorString, $StatusString);
+			return false;
+		}
+		
+		$Command = $CommandFinder->findById($InsertCommandID);	
+		
+		$Position = 1;
+		//$LinkName = $MenueFinder->findById($InsertMenueID);		
+		//var_dump("und den MenueFinder eintragen");tb_LinkName
+		$Checker =  $ContentManager->insertMenueCommandByMenueIdAndCommandId($MenueID,$InsertCommandID,$Command->getName(),$InsertViewID,$InsertCommandGroupID,$Position);
+		if ( false == $Checker )
+			{
+			$ErrorString.=":T_MENUE_ERROR3:";
+			$this->showEditMenue($ErrorString, $StatusString);
+			return false;			
+			}	
+		/* TODO: Prüfung */
+	}	
+	
+		
+	/**
+	 * insertMenueGroupName
+	 *
+	 * @return void This is the return value description
+	 *
+	 */
+	public function insertContentGroupName($ErrorString="",$StatusString="")
+	{
+		if( Controler_Main::getInstance()->getUserLevel() < BACKEND_USERLEVEL )
+		{
+			$ControlerStart= new Controler_Start();
+			$ControlerStart->start();
+			return false;
+		}
+		$Request= new Request();
+		$ErrorString="";
+		$StatusString="";
+		
+		$ContentGroupFinder = new ContentGroupFinder();
+		$ContentGroupManager = new ContentGroupManager();
+		
+		if(strlen($Request->getAsString("tb_ContentGroupName"))<3){$ErrorString.=":T_CONTENT_GROUP_ERROR1:";}
+		else {
+			if(strlen($Request->getAsString("tb_ContentGroupName")))
+			{
+				$ContentGroupName = $Request->getAsString("tb_ContentGroupName");
+				//$ContentGroupCollection=$ContentGroupFinder->findByName($ContentGroupName);
+				//$ContentGroup = $ContentGroupCollection->getByIndex(0);		
+				$ContentGroup=$ContentGroupFinder->findByName($ContentGroupName);
+				if($ContentGroup->getId()!=0){$ErrorString.=":T_CONTENT_GROUP_ERROR2:";}
+			}	
+		}				
+									
+		if(strlen($ErrorString)!=0)
+		{
+			$this->showEditMenue($ErrorString, $StatusString);
+			return false;
+		}
+		/* TODO++-: Letzte Position ermitteln */
+		
+		$Position = 0;
+		
+		//$Command = $CommandFinder->findById($InsertCommandID);	
+		
+		//$LinkName = $MenueFinder->findById($InsertMenueID);		
+		//var_dump("und den MenueFinder eintragen");tb_LinkName
+		$ContentGroupManager->insertContentGroup($ContentGroupName,$Position);		
+		/* TODO: Prüfung */
+	}	
+	
+	/**
+	 * 
+	 * 	deleteMenueLink
+	 * 
+	 */	
+	public function deleteMenueLink($ErrorString="",$StatusString="")
+	{
+		if( Controler_Main::getInstance()->getUserLevel() < BACKEND_USERLEVEL )
+		{
+			$ControlerStart= new Controler_Start();
+			$ControlerStart->start();
+			return false;
+		}
+		$Request = new Request();
+		$ID=$Request->getAsInt("LinkID");
+		$MenueID=$Request->getAsInt("MenueID");
+		$ContentManager= new ContentManager();
+		$ContentManager->deleteByIdAndMenueID($ID,$MenueID);
+		/* TODO: Rückgabe prüfen!!! */	
+		return true;	
+	}
+	
+	/**
+	 * 
+	 * 	deleteMenueContent
+	 * 
+	 */	
+	public function deleteMenueContent($ErrorString="",$StatusString="")
+	{
+		if( Controler_Main::getInstance()->getUserLevel() < BACKEND_USERLEVEL )
+		{
+			$ControlerStart= new Controler_Start();
+			$ControlerStart->start();
+			return false;
+		}
+		$Request = new Request();
+		$ContentID=$Request->getAsInt("ContentID");
+		$ContentManager= new ContentManager();
+		$ContentManager->deleteByID($ContentID);
+		/* TODO: Rückgabe prüfen!!! */	
+		return true;	
+	}
+	
+	/**
+	 * 
+	 * 	deleteMenue
+	 * 
+	 */	
+	public function deleteMenue($ErrorString="",$StatusString="")
+	{
+		if( Controler_Main::getInstance()->getUserLevel() < BACKEND_USERLEVEL )
+		{
+			$ControlerStart= new Controler_Start();
+			$ControlerStart->start();
+			return false;
+		}
+		$Request = new Request();
+		$ID=$Request->getAsInt("MenueID");
+		
+		$ContentManager= new ContentManager();
+		$ContentManager->deleteByMenueId($ID);
+		$MenueManager = new MenueManager();
+		$MenueManager->deleteById($ID);	
+		
+		/* TODO: Rückgabe prüfen!!! */	
+		return true;	
+	}
+	
+	/**
+	 * 
+	 * 	deleteMenueGroup
+	 * 
+	 */	
+	public function deleteContentGroup($ErrorString="",$StatusString="")
+	{
+		if( Controler_Main::getInstance()->getUserLevel() < BACKEND_USERLEVEL )
+		{
+			$ControlerStart= new Controler_Start();
+			$ControlerStart->start();
+			return false;
+		}
+		$Request = new Request();
+		$ID=$Request->getAsInt("deleteContentGroupID");
+		if ( isset($ID))
+			{ 
+			$ContentGroupManager = new ContentGroupManager();
+			$TTT = $ContentGroupManager->deleteById($ID);
+			if ( !$TTT ) return false;		
+			return true;
+			}
+	}
+		
+		
+		
+}
+
+?>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;Home-Control/class/objects/devices/cls_USBForAll.php&apos;" deleteContents="false" description="Delete resource &apos;Home-Control/class/objects/devices/cls_USBForAll.php&apos;" element1="/Home-Control/class/objects/devices/cls_USBForAll.php" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1347821733424"/>
+</session>

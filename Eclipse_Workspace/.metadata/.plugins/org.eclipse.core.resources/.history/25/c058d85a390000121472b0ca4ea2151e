@@ -1,0 +1,85 @@
+<?php
+
+class DeviceFinder extends SystemFinder 
+{
+	
+	/**
+	 * Enter description here...
+	 *
+	 * @param array $RecordSet
+	 * @return DeviceCollection
+	 */
+	private function doDeviceLoad($RecordSet)
+	{
+		$DeviceCollection = new DeviceCollection();
+		foreach ($RecordSet as $Row)
+		{
+			$DeviceCollection->add($this->load($Row));
+		}
+		return $DeviceCollection;
+	}
+	
+	protected  function load($Row)
+	{
+		switch($Row['s_Typ'])
+		{
+			/* TODO: Neue Kommunikations-Verwaltung zu Geräten einbinden..................
+			 * usb4all ist genauso über ip und port erreichbar....
+			 * entfällt demnach an dieser stelle
+			 * 
+			 * Denkbar wären:
+			 * - GPIO Port vom Raspberry Pi unter Linux
+			 * - Serielle Kommunikation direkt ansprechen unter Linux
+			 * - Ausgaben über HDMI oder Video-Out direkt ansprechen unter Linux
+			 * - MediaPlayer Steuerung direkt ansprechen unter Linux
+			 * 
+			*/
+			case "USB4all-Socket":
+				{
+					return new USBForAll($Row['i_ID'],$Row['s_Name'],$Row['s_Typ'],$Row['s_Version'],$Row['s_IP'],$Row['i_Port'],$Row['b_Status'],"TX","RX");
+				}break;
+			default:
+				return new Device($Row['i_ID'],$Row['s_Name'],$Row['s_Typ'],$Row['s_Version'],$Row['s_IP'],$Row['i_Port'],$Row['b_Status'],"TX","RX");				
+		}
+		
+	}
+	
+	
+	
+	
+	/**
+	 * Gibt alle Geräte zurück
+	 *
+	 * @param 
+	 * @return Alle Geräte 
+	 *
+	 */
+	public function findAll()
+	{
+	   	$Sql="select i_ID,s_Name,s_Typ,s_Version,s_IP,i_Port,b_Status
+		 from tbl_devices";
+		return $this->doDeviceLoad($this->MySql->executeQuery($Sql));		
+	}
+	
+	
+	/**
+	 * Suche nach Gerät
+	 *
+	 * @param int $DeviceId des zu suchenden Gerätes
+	 * @return gesuchtes Gerät 
+	 *
+	 */
+	public function findByID($DeviceID)
+	{
+	   	$Sql="select i_ID,s_Name,s_Typ,s_Version,s_IP,i_Port,b_Status
+		 from tbl_devices
+		where i_ID='".$DeviceID."'";
+		return  $this->doDeviceLoad($this->MySql->executeQuery($Sql))->getByIndex(0);
+	}
+
+
+	
+}
+
+
+?>

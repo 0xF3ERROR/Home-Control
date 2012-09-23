@@ -1,0 +1,599 @@
+<?php 
+
+include("tpl_Header.php");
+
+if($this->ErrorString)
+	{
+	echo "	<div id='ErrorStringContainer'><p>".$this->ErrorString."</p></div>";
+	}
+if($this->StatusString)
+	{
+	echo "	<div id='StatusStringContainer' align=center><p>".$this->StatusString."</p></div>";
+	}
+echo "
+	<div id='middle'>
+		<div id='m_o_1_sp'></div>
+		<div id='m_m_1_sp'>
+			<div id='m_m_1_sp_inhalt' align='center'>
+					<h1>:T_MENUE_EDIT:</h1>			
+					<div id='Befehle_anzeigen'>	
+						<div class='gruppenkontainer'>
+							<form action='index.php?Section=Menues&amp;Action=updateMenueName&amp;MenueID=".$this->Menue->getID()."' name='form' method='POST' target=''>
+								<fieldset class='BIM_Group_fieldset'>
+									<legend>:T_MENUE_DATA:</legend>
+									<div class='befehlskontainer' >			
+										:T_MENUE_NAME:: <input type='Text' name='tb_MenueName' value='".$this->Menue->getName()."' size='' maxlength='25'>
+									</div>											
+									<div class='buttonkontainer' >		
+										<div class='buttonbar'>	
+											<p class='buttonbar_button'><input type='Submit' class='submit' name='btn_MenueUpdate' value=':T_UPDATE:'></p>								
+										</div>
+									</div>								
+								</fieldset>
+							</form>		
+						</div>";
+
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ * 
+ * 
+ * 			Show Links
+ * 
+ * 
+ * 
+ * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ */
+echo "
+						<div class='gruppenkontainer'>
+							<form action='index.php?Section=Menues&amp;Action=insertMenueLink&amp;MenueID=".$this->Menue->getID()."' name='form' method='POST' target=''>
+								<fieldset class='BIM_Group_fieldset'>
+									<legend>:T_MENUE_LINKS:</legend>
+									<div class='befehlskontainer' >";
+
+	if ( $this->ContentCollection != NULL) 
+		{
+		$IsLink = false;
+		$MenueID = $this->Menue->getID();
+		$Counter = 0;
+		$CommandIDs[]="";
+		foreach($this->ContentCollection AS $Content)
+			{		
+			if ( ( ( $Content->getView_ID() ) == 0 ) && ( $Content->getMenue_ID() == $MenueID ) )	
+				{			
+				$IsLink = true;	
+				$CommandIDs[$Counter] = $Content->getName();
+				/*
+				echo "		
+										<div class='befehlskontainerinhalt'>".$Content->getID()."</div>
+										<div class='befehlskontainerinhalt'>".$Content->getCommand_ID()."</div>
+										<div class='befehlskontainerinhalt'>".$Content->getName()."</div>
+										
+										
+										<div class='befehlskontainerbutton'><p class='buttonbar_link'><a href='index.php?Section=Menues&amp;Action=deleteMenueContent&amp;ContentID=".$Content->getID()."&amp;MenueID=".$Content->getMenue_ID()."'>:T_REMOVE:</a></p></div>
+									";
+				*/
+				echo "		
+										<div class='befehlskontainerbutton'>
+											<p class='buttonbar_link'>
+												<a href='index.php?Section=Menues&amp;Action=deleteMenueLink&amp;LinkID=".$Content->getID()."&amp;MenueID=".$Content->getMenue_ID()."' onclick='return confirm(\":T_LINK_DELETE_CONFIRM:\");'>".$this->MenueCollection->getById($Content->getName())->getName()."</a>
+											</p>
+										</div>
+									";
+				$Counter++;
+				}
+			}
+		if ( $IsLink == false ) 
+			{
+			echo "
+										<div class='befehlskontainerinhalt' >:T_MENUE_LINK_ERROR1:</div>	";					
+			}
+		}						
+	echo "
+									</div>";
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ * 
+ * 
+ * 			Add Link
+ * 
+ * 
+ * 
+ * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ */						
+echo "										
+									<div class='buttonkontainer' >		
+										<div class='buttonbar'>
+											<div class='befehlskontainerinhalt2'>
+												<select name='InsertMenueID'>";	
+	if ( $this->MenueCollection != NULL) 
+		{
+		$IsLink = false;
+		foreach($this->MenueCollection AS $Menue)
+			{	
+			$IsInside = false;
+			foreach($CommandIDs AS $CommandID)
+				{
+				if ( ( $Menue->getID() == $CommandID ) && ( $Menue->getID() != 0 ) ) $IsInside = true;
+				}
+			if ( ( ( $Menue->getID() != $MenueID ) && ( $IsInside == false ) ) && ( $Menue->getID() != 0 ) )
+				{			
+				$IsLink = true;	
+				echo "												
+													<option value='".$Menue->getID()."'>
+														".$Menue->getName()."
+													</option>";
+				}
+			}
+			
+		if ( $IsLink == true ) 
+			{
+			echo "
+												</select>	
+											</div>
+											<p class='buttonbar_button'><input type='Submit' class='submit' name='btn_MenueUpdate' value=':T_ADD:'></p>";
+			}
+		else
+			{
+			echo "
+													<option>:T_MENUE_LINK_ERROR1:</option>	
+												</select>
+											</div>";					
+			}
+		}
+											
+											
+											//<p class='buttonbar_link'><a href='index.php?Section=Menues&amp;Action=MenueManagement'>:T_BACK:</a></p>	
+echo "																						
+										</div>
+									</div>								
+								</fieldset>
+							</form>		
+						</div>";
+
+
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ * 
+ * 
+ * 			Add ContentGroup 
+ * 
+ * 
+ * 
+ * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+/************************************************************************************************************************	Neue Menügruppe hinzufügen	*/	
+echo "
+						<div class='gruppenkontainer'>
+							<fieldset class='BIM_Group_fieldset'>
+								<legend>:T_MENUE_GROUP_EDIT:</legend>
+								<form action='index.php?Section=Menues&amp;Action=insertContentGroupName&amp;MenueID=".$this->Menue->getID()."' name='form' method='POST' target=''>													
+									<div class='befehlskontainer' >	
+										<div class='buttonbar'>			
+											:T_MENUE_GROUP_NAME:: <input type='Text' name='tb_ContentGroupName' value='' size='' maxlength='25'>
+											<p class='buttonbar_button'><input type='Submit' class='submit' name='btn_MenueUpdate' value=':T_ADD:'></p>										
+										</div>
+									</div>	
+								</form>		
+								<form action='index.php?Section=Menues&amp;Action=deleteContentGroup&amp;MenueID=".$this->Menue->getID()."' name='form' method='POST' target=''>
+									<div class='befehlskontainer' >	
+										<div class='buttonbar'>
+									
+											<div class='befehlskontainerinhalt2'>
+												<select name='deleteContentGroupID'>";	
+/* TODO+:: Liste der verfügbaren Menügruppen auflisten */			
+	$IsContentGroup = false;								
+	if ( $this->ContentGroupCollection != NULL) 
+		{
+		foreach($this->ContentGroupCollection AS $ContentGroup)
+			{	
+			if ( ( $ContentGroup->getID() != 0 ) )	
+				{			
+				echo "												
+													<option value='".$ContentGroup->getID()."'>
+														".$ContentGroup->getName()." 
+													</option>";	
+				$IsContentGroup = true;								
+				}
+			}
+		
+		}
+	if ( $IsContentGroup == false ) 
+		{
+		echo "
+													<option> --------- </option>	";				
+		}
+	echo "
+												</select>	
+											</div>";
+	
+	if ( $IsContentGroup == true ) 
+		{	
+		echo "
+											<p class='buttonbar_button'><input type='Submit' class='submit' name='btn_MenueUpdate' value=':T_DELETE:' onclick='return confirm(\":T_CONTENT_GROUP_DELETE_CONFIRM:\");'></p>";
+		}
+		echo "						
+										</div>			
+									</div>		
+								</form>							
+							</fieldset>	
+						</div>
+						<p class='buttonbar_link'><a href='index.php?Section=Menues&amp;Action=MenueManagement'>:T_BACK:</a></p>
+					</div>";
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ * 
+ * 
+ * 			Add Content
+ * 
+ * 
+ * 
+ * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+echo"
+					<H1>:T_MENUE_INSERT:</H1>
+					<div id='Befehle_anzeigen'>	
+						<div class='gruppenkontainer'>
+							<form action='index.php?Section=Menues&amp;Action=insertMenueCommand&amp;MenueID=".$this->Menue->getID()."' name='form' method='POST' target=''>
+								<fieldset class='BIM_Group_fieldset'>
+									<legend>:T_MENUE_CONTENT_ADD:</legend>										
+									<div class='buttonkontainer' >		
+										<div class='buttonbar'>
+											<div class='befehlskontainerinhalt2'>
+												<select name='InsertCommandID'>";
+/************************************************************************************************************************	Befehle		*/
+	$IsContent = false; // Teil der Freigabe des ADD Buttons
+	if ( $this->CommandCollection != NULL ) 
+		{
+		foreach($this->CommandCollection AS $Command)
+			{	
+			$IsInside = true;
+			
+			/*
+			 * TODO+: 13.09.2012 - Optimieren --- Bereits vorhandene Befehle nicht mehr auflisten
+			 *
+			foreach($this->ContentCollection AS $Content)
+				{
+				if ( ( ( ( $Command->getID() != $Content->getCommand_ID() ) 
+					&& ( $Content->getMenue_ID() != $this->MenueId ) ) 
+					&& ( $Command->getID() != 0 ) ) 
+					&& ( $Content->getID() != 0 ) )
+					{
+					$IsInside = true;					
+					}
+				}
+			
+			// So überhaupt nicht	
+			$MenueID = $this->MenueID;
+			$CommandID = $Command->getID();
+			if ( ( $this->ContentCollection->getByCommandIdAndMenueId($MenueID,$CommandID)->getID() ) != 0 )
+				{
+				$IsInside = false;
+				}
+			
+						$IsInside = false;			
+			 */		
+			/* TODO---:) OPTIMIEREN */	
+			if ( $Command->getID() != 0 )
+				{
+				foreach($this->ContentCollection AS $Content)
+					{
+					if ( ( ( $Command->getID() ) == ( $Content->getCommand_ID() ) ) && ( $Content->getMenue_ID() == $this->Menue->getID() ) ) 
+						{
+						$IsInside = false;					
+						}
+					}
+				}
+				
+			if ( ( $IsInside == true ) && ( $Command->getID() != 0 ) )
+				{			
+				$IsContent = true;	
+				echo "												
+													<option value='".$Command->getID()."'>
+														".$Command->getName()." 
+													</option>";
+				}
+			}
+			
+		if ( $IsContent == true ) 
+			{
+			echo "
+												</select>	
+											</div>";
+			}
+		else
+			{
+			echo "
+													<option> --------- </option>	
+												</select>
+											</div>";					
+			}
+		}
+		
+/************************************************************************************************************************	Contentgruppe	*/
+echo "
+											<div class='befehlskontainerinhalt2'>
+												<select name='InsertContentGroupID'>";
+
+$IsContentGroup = false;
+/* TODO+-: Liste der verfügbaren Menügruppen auflisten */											
+	if ( $this->ContentGroupCollection != NULL) 
+		{
+		foreach($this->ContentGroupCollection AS $ContentGroup)
+			{				
+			$LastID = 0;	
+			/*
+			foreach($this->ContentCollection AS $Content)
+				{
+				if ( ($MenueGroup->getID() == $Content->getMenueGroup_ID())	&& ( $LastID != $MenueGroup->getID() ) )
+					{	
+					echo "												
+													<option value='".$MenueGroup->getID()."'>
+														".$MenueGroup->getID()." | 
+														".$MenueGroup->getName()." | 
+														".$MenueGroup->getMenue_ID()." | 
+														".$MenueGroup->getPosition()." 
+													</option>";
+					$LastID = $MenueGroup->getID();
+					}
+				}
+			*/				
+			//if ( ($MenueGroup->getID() == true)	&& ( $LastID != $MenueGroup->getID() ) )
+			
+			if ( ( 0 != $ContentGroup->getID() ) )
+					{	
+					echo "												
+													<option value='".$ContentGroup->getID()."'>
+														".$ContentGroup->getPosition()." |  
+														".$ContentGroup->getName()."
+													</option>";
+					$LastID = $ContentGroup->getID();
+					$IsContentGroup = true;
+					}
+			}
+			
+		}		
+	if ( $IsContentGroup == false ) 
+		{
+		echo "
+													<option> --------- </option>	";	
+		}
+	echo "
+												</select>	
+											</div>";
+/************************************************************************************************************************	Darstellungsart	*/
+echo "
+											<div class='befehlskontainerinhalt2'>
+												<select name='InsertDisplayID'>";
+	$IsView = false;		
+	if ( $this->ViewCollection != NULL) 
+		{
+		foreach($this->ViewCollection AS $View)
+			{	
+			if ($View->getID() != 0)	
+				{			
+				echo "												
+													<option value='".$View->getID()."'>
+														".$View->getName()." 
+													</option>";
+				$IsView = true;
+				}
+			}
+			
+		if ( $IsView == true ) 
+			{
+			echo "
+												</select>	
+											</div>";
+			if ( ( $IsContentGroup == true ) && ( $IsContent == true ) )
+				echo "
+											<p class='buttonbar_button'><input type='Submit' class='submit' name='btn_MenueUpdate' value=':T_ADD:'></p>";
+			}
+		else
+			{
+			echo "
+													<option>:T_MENUE_DISPLAY_ERROR1:</option>	
+												</select>
+											</div>";					
+			}
+		}		
+			
+/*************************************************************************************************************************/	
+											//<p class='buttonbar_link'><a href='index.php?Section=Menues&amp;Action=MenueManagement'>:T_BACK:</a></p>	
+echo "												
+										</div>
+									</div>								
+								</fieldset>
+							</form>		
+						</div>
+						<p class='buttonbar_link'><a href='index.php?Section=Menues&amp;Action=MenueManagement'>:T_BACK:</a></p>
+					</div>";
+	
+	/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ * 
+ * 
+ * 			Show Content Preview
+ * 
+ * 
+ * 
+ * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ */
+
+/*
+echo"
+						<div class='gruppenkontainer'>
+							<form action='index.php?Section=Menues&amp;Action=insertMenueCommand&amp;MenueID=".$this->Menue->getID()."' name='form' method='POST' target=''>
+								<fieldset class='BIM_Group_fieldset'>
+									<legend>:T_MENUE_CONTENT:</legend>
+									<div class='befehlskontainer' >	
+										<div class='befehlskontainerinhalt'>:T_COMMAND_CONTENT_ID:</div>
+										<div class='befehlskontainerinhalt'>:T_COMMAND_ID:</div>
+										<div class='befehlskontainerinhalt'>:T_COMMAND_NAME:</div>
+										<div class='befehlskontainerinhalt'>:T_COMMAND_OPTION_ID:</div>
+										
+										
+										<div class='befehlskontainerinhalt'>:T_COMMAND_OPTION:</div>
+									</div>	";	
+
+	if ( $this->ContentCollection != NULL) 
+		{
+		$IsContent = false;
+		$Counter = 0;
+		$CommandIDs[]="";
+		foreach($this->ContentCollection AS $Content)
+			{			
+			if ( ($Content->getView_ID() != 0) && ($Content->getMenue_ID() == $MenueID)	)	
+				{	
+				$NoContent = true;
+				$CommandIDs[$Counter] = $Content->getCommand_ID();		
+				echo "
+									<div class='befehlskontainer' >			
+										<div class='befehlskontainerinhalt'>".$Content->getID()."</div>
+										<div class='befehlskontainerinhalt'>".$Content->getCommand_ID()."</div>
+										<div class='befehlskontainerinhalt'>".$Content->getName()."</div>
+										<div class='befehlskontainerinhalt'>
+											".$this->ViewCollection->getByIndex($Content->getView_ID())->getName()."
+										</div>
+										<div class='befehlskontainerbutton'><p class='buttonbar_link'><a href='index.php?Section=Menues&amp;Action=deleteMenueContent&amp;ContentID=".$Content->getID()."&amp;MenueID=".$Content->getMenue_ID()."'>:T_REMOVE:</a></p></div>
+									</div>	";
+				$Counter++;
+				}
+			}
+		if ( $NoContent == false ) 
+			{
+			echo "
+									<div class='befehlskontainer' >:T_MENUE_CONTENT_ERROR1:</div>	";					
+			}
+		}						
+*/
+										//<div class='befehlskontainerinhalt'>Group ID</div>	
+	echo "
+					<H1>:T_MENUE_PREVIEW:</H1>
+					<div id='Befehle_anzeigen'>	
+						<div class='gruppenkontainer'>
+							<fieldset class='BIM_Group_fieldset'>
+								<legend>:T_MENUE_CONTENT:</legend>
+									<div class='befehlskontainer' >	
+										<div class='befehlskontainerinhalt'>:T_COMMAND_CONTENT_ID:</div>
+										<div class='befehlskontainerinhalt'>Menue ID</div>
+										<div class='befehlskontainerinhalt'>Command ID</div>
+										<div class='befehlskontainerinhalt'>View ID</div>
+										<div class='befehlskontainerinhalt'>Position</div>			
+										
+										<div class='befehlskontainerinhalt'>:T_COMMAND_NAME:</div>
+										<div class='befehlskontainerinhalt'>:T_COMMAND_OPTION:</div>
+									</div>			
+							</fieldset>";	
+	
+	$ShowFieldsetEnd = false; 
+	if ( $this->ContentCollection != NULL) 
+		{
+		$IsContent = false;
+		$Counter = 0;
+		$CommandIDs[]="";
+		$LastMenueGroupID = 0; 	/* ID 0 ist ein Dummy */
+		$ShowFieldsetEnd = false; 
+		foreach($this->ContentCollection AS $Content)
+			{			
+			if ( ($Content->getView_ID() != 0) && ($Content->getMenue_ID() == $MenueID)	)	
+				{	
+				$NoContent = true;
+				$CommandIDs[$Counter] = $Content->getCommand_ID();			
+				
+/******************************************************************************************************************************		*/	
+//				Content Preview
+/******************************************************************************************************************************		*/		
+				
+				/* TODO+: Menügruppenname anzeigen */
+				if($Content->getContentGroup_ID() != $LastMenueGroupID)
+				{				
+					if ( $LastMenueGroupID != 0 ) echo "</fieldset>";
+					echo"
+							<fieldset class='BIM_Group_fieldset'>
+								<legend>";
+					/* TODO++: Die Anzeige ist zu optimieren ^^  */					
+					foreach ( $this->ContentGroupCollection AS $MG )
+					{
+						if ( $MG->getID() == $Content->getContentGroup_ID() ) 
+						{
+							echo $MG->getPosition()." | ".$MG->getName();
+							echo "<a class='fieldset_link' href='index.php?Section=Menues&amp;Action=MenueGroupPositionUP&amp;MenueID=".$Content->getContentGroup_ID()."&amp;ContentID=".$Content->getID()."&amp;MenueGroupID=".$MG->getID()."'>:T_UP:</a>";
+							echo "<a class='fieldset_link' href='index.php?Section=Menues&amp;Action=MenueGroupPositionDOWN&amp;MenueID=".$Content->getContentGroup_ID()."&amp;ContentID=".$Content->getID()."&amp;MenueGroupID=".$MG->getID()."'>:T_DOWN:</a>";
+						}
+						
+					}					
+					echo "
+								</legend>";
+					$LastMenueGroupID = $Content->getContentGroup_ID();
+				}		
+					
+					
+/******************************************************************************************************************************		*/
+					/*
+					 * 
+					 * 
+										<div class='befehlskontainerinhalt'>".$Content->getID()."</div>
+										<div class='befehlskontainerinhalt'>".$Content->getMenue_ID()."</div>
+										<div class='befehlskontainerinhalt'>".$Content->getCommand_ID()."</div>
+										<div class='befehlskontainerinhalt'>".$Content->getView_ID()."</div>
+										<div class='befehlskontainerinhalt'>".$Content->getPosition()."</div>
+					 * 
+					 * 
+					 * 
+										<div class='befehlskontainerbutton'><p class='buttonbar_link'><a href='index.php?Section=Menues&amp;Action=MenueContentPositionUP&amp;ContentID=".$Content->getID()."&amp;MenueID=".$Content->getMenue_ID()."'>:T_UP:</a></p></div>
+										<div class='befehlskontainerbutton'><p class='buttonbar_link'><a href='index.php?Section=Menues&amp;Action=MenueContentPositionDOWN&amp;ContentID=".$Content->getID()."&amp;MenueID=".$Content->getMenue_ID()."'>:T_DOWN:</a></p></div>
+										
+					 * 
+					 * 
+					 */
+										//<div class='befehlskontainerinhalt'>".$Content->getMenueGroup_ID()."</div>
+				echo "
+								<form action='index.php?Section=Menues&amp;Action=insertMenueCommand&amp;MenueID=".$this->Menue->getID()."' name='form' method='POST' target=''>								
+									<div class='befehlskontainer' >			
+										<div class='befehlskontainerinhalt'>".$Content->getName()."</div>
+										<div class='befehlskontainerinhalt'>
+											".$this->ViewCollection->getByIndex($Content->getView_ID())->getName()."
+										</div>
+										<div class='befehlskontainerbutton'><p class='buttonbar_link'><a href='index.php?Section=Menues&amp;Action=showEditContent&amp;ContentID=".$Content->getID()."&amp;MenueID=".$Content->getMenue_ID()."'>:T_EDIT:</a></p></div>									
+										<div class='befehlskontainerbutton'><p class='buttonbar_link'><a href='index.php?Section=Menues&amp;Action=deleteMenueContent&amp;ContentID=".$Content->getID()."&amp;MenueID=".$Content->getMenue_ID()."' onclick='return confirm(\":T_CONTENT_DELETE_CONFIRM:\");'>:T_REMOVE:</a></p></div>
+									</div>	
+								</form>	";
+				if( $ShowFieldsetEnd == true )
+					{		
+					$ShowFieldsetEnd = false;
+					}
+				$Counter++;
+				}
+			}
+		if ( $NoContent == false ) 
+			{
+			echo"
+						<fieldset class='BIM_Group_fieldset'>
+							<div class='befehlskontainer' >:T_MENUE_CONTENT_ERROR1:</div>								
+						</fieldset>
+					</div>";
+			}
+		else 
+			{
+			echo "						
+						</fieldset>
+					</div>";							
+			}
+		}
+
+
+
+
+
+	
+/*************************************************************************************************************************/	
+	
+echo "
+					
+						
+											<p class='buttonbar_link'><a href='index.php?Section=Menues&amp;Action=MenueManagement'>:T_BACK:</a></p>		
+					
+					</div>
+			</div>
+		</div>
+		<div id='m_u_1_sp'></div>
+	</div>";
+include("tpl_Footer.php");
+?>
+
+

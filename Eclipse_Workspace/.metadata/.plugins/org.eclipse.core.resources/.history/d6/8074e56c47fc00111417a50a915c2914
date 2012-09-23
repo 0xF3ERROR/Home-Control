@@ -1,0 +1,26 @@
+<?php
+include("tpl_Header.php");
+?>
+				<h1>:T_GROUP_ADD:</h1>				
+					<div id='Befehle_anzeigen'>
+						<div class='gruppenkontainer'>
+							<form action='index.php?Section=Groups&amp;Action=addNewGroup' name='form' method='POST' target=''>
+								<fieldset class='BIM_Group_fieldset'>
+									<legend>:T_GROUP_DATA:</legend>
+									<div class='befehlskontainer' >			
+										:T_GROUP_NAME:: <input type='Text' name='tb_GroupName' value='' size='' maxlength='25'>
+									</div>								
+									<div class='buttonkontainer' >		
+										<div class='buttonbar'>	
+											<p class='buttonbar_button'><input type='Submit' class='submit' name='btn_GroupAdd' value=':T_ADD:'></p>
+											<p class='buttonbar_link'><a href='index.php?Section=Groups&amp;Action=GroupManagement'>:T_BACK:</a></p>											
+										</div>
+									</div>										
+								</fieldset>
+							</form>		
+						</div>
+<?php /* TODO: Eventuell Befehlsliste anzeigen und Read / Write Status setzen */ ?>
+					</div>				
+<?php
+include("tpl_Footer.php");
+?>

@@ -1,0 +1,20 @@
+<?php
+include("tpl_Header.php");
+?>
+				<h1>:T_PASSWORD_CHANGE:</h1> 
+				<br />
+				<h5><?php echo $this->User->getName(); ?> </h5>	
+				<br />    
+				<div align="center">
+					<form action='index.php?Section=Account&amp;Action=ChangePass' name='form' method='POST' target=''>
+						:T_PASSWORD:: <input type='Password' name='tb_Pass' value='' size='' maxlength='25'>
+						<br>
+						:T_PASSWORD_RETYPE:: <input type='Password' name='tb_PassConfirme' value='' size='' maxlength='25'>
+						<br />
+						<br />
+						<p><input type='Submit' class='submit' name='btn_ChangePass' value=':T_PASSWORD_CHANGE:'></p>
+					</form>
+				</div>
+<?php
+include("tpl_Footer.php");
+?>

@@ -1,0 +1,17 @@
+<?php
+include("tpl_Header.php");
+?>
+
+
+    <h1>:T_TERMS:</h1>
+    <p> 
+		:T_TERMS_TEXT1:
+	</p>
+	
+	<p> 
+		:T_TERMS_TEXT2:
+	</p>
+		
+<?php
+include("tpl_Footer.php");
+?>

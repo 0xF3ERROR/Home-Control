@@ -1,0 +1,41 @@
+<?php
+include("tpl_Header.php");
+?>
+				<div id="displayLinks">
+					<table id="main_menue_nav" align="center" >
+						<tr>
+							<td><a href='index.php?Section=Backend&amp;Action=SystemStatus'>:T_SYSTEM_STATE:</a></td>
+							<td><a href='index.php?Section=Users&amp;Action=UserManagement'>:T_USER_MANAGEMENT:</a></td>
+							<td><a href='index.php?Section=Groups&amp;Action=GroupManagement'>:T_GROUP_MANAGEMENT:</a></td>
+							<td><a href='index.php?Section=Menues&amp;Action=MenueManagement'>:T_MENUE_MANAGEMENT:</a></td>
+							<td><a href='index.php?Section=Contents&amp;Action=ContentManagement'>:T_CONTENT_MANAGEMENT:</a></td>
+							<td><a href='index.php?Section=Devices&amp;Action=DeviceManagement'>:T_DEVICE_MANAGEMENT:</a></td>
+						</tr>
+					</table>
+				</div>	
+						<br />								
+<?php
+
+	$HtmlSelector = "";
+	if ( $this->HtmlSelector != NULL ) $HtmlSelector = $this->HtmlSelector;
+	else 
+		{
+		echo"<h1>:T_DEVICE_MANAGEMENT:</h1>				
+					<div id='Seitenbeschreibung'>
+						<br />
+						<p>:T_DEVICE_MANAGEMENT_TXT:</p>
+						<br />
+						<div class='buttonbar_link'><a href='index.php?Section=Devices&amp;Action=showAddNewDevice'>:T_DEVICE_ADD_NEW:</a></div>
+					</div>";
+		}
+	if ( $this->Device != NULL ) echo $this->Device->getHTML( $HtmlSelector );
+	if ( $this->DeviceCollection != NULL) 
+		{
+		foreach($this->DeviceCollection AS $Device)
+			{
+			echo $Device->getHTML($HtmlSelector);	
+			}
+		}
+include("tpl_Footer.php");
+?>
+

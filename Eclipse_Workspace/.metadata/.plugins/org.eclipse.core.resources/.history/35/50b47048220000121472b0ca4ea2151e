@@ -1,0 +1,26 @@
+<?php
+
+	$HtmlSelector = "";
+	if ( $this->HtmlSelector != NULL ) $HtmlSelector = $this->HtmlSelector;
+	else 
+		{
+		echo"
+				<h1>:T_DEVICE_MANAGEMENT:</h1>				
+				<div id='Seitenbeschreibung'>
+					<br />
+					<p>:T_DEVICE_MANAGEMENT_TXT:</p>
+					<br />
+					<div class='buttonbar_link'><a href='index.php?Section=Devices&amp;Action=showAddNewDevice'>:T_DEVICE_ADD_NEW:</a></div>
+				</div>";
+		}
+	if ( $this->Device != NULL ) echo $this->Device->getHTML( $HtmlSelector );
+	if ( $this->DeviceCollection != NULL) 
+		{
+		foreach($this->DeviceCollection AS $Device)
+			{
+			echo $Device->getHTML($HtmlSelector);	
+			}
+		}
+?>
+
+

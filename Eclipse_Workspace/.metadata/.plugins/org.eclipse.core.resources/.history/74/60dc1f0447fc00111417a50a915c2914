@@ -1,0 +1,19 @@
+<?php
+include("tpl_Header.php");
+?>
+				
+				
+				<h1>Home</h1>
+	
+				<h5><?php echo $this->User->getUserLevel(); ?> </h5>
+				<h5><?php echo $this->Menue->getName(); ?> </h5>
+				<h5><?php echo $this->Menue->getID(); ?> </h5>
+				
+		
+
+<?php
+
+//echo $this->Menu->getContentOutput();
+
+include("tpl_Footer.php");
+?>

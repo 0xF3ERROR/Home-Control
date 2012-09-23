@@ -1,0 +1,80 @@
+<?php
+
+/**
+ * class cls_Controler_Backend
+ *
+ * Description for class cls_Controler_Backend
+ *
+ * @author:
+*/
+class Controler_Backend  
+{
+
+	/**
+	 * cls_Controler_Backend constructor
+	 *
+	 * @param 
+	 */
+	function __construct() {
+
+	}
+	
+	
+	public function start()	{
+		$Request= new Request();
+		switch($Request->getAsString('Action'))
+			{						
+			case "SystemStatus":
+				{
+				$this->showSystemStatus();
+				}break;				
+					
+				
+			
+			default:
+				$this->showSystemStatus();
+			}
+	}
+	
+	
+	/**
+	 * 
+	 * 	Systemstatus anzeigen
+	 * 
+	 */	
+	public function showSystemStatus($ErrorString="",$StatusString="")
+		{
+		//if(!Controler_Main::getInstance()->isUserLoggedIn())//if( $this->User->getUserLevel() < BACKEND_USERLEVEL ) 
+		if( Controler_Main::getInstance()->getUserLevel() < BACKEND_USERLEVEL )
+			{
+			$ControlerStart= new Controler_Start();
+			$ControlerStart->start();
+			return false;
+			}
+		$Request= new Request();
+		$SystemInformationFinder= new SystemInformationFinder();
+		$MySql = $SystemInformationFinder->mysqlVersion();
+		$MySqlVersion = $MySql[0]['s_MySqlVersion'];
+		
+		$PHPVersion = phpversion();
+		
+		$ApacheVersion = 1;
+		
+		$Template=Template::getInstance("tpl_BE_SystemStatus.php");  
+		$Template->assign("UserId",Controler_Main::getInstance()->getUser()->getId()); 
+		$Template->assign("ApacheVersion",$ApacheVersion); 
+		$Template->assign("PHPVersion",$PHPVersion); 
+		$Template->assign("MySqlVersion",$MySqlVersion); 
+		
+		// Userdaten holen
+		$User=Controler_Main::getInstance()->getUser();
+		
+		
+		
+		$Template->render();
+	}
+	
+		
+}
+
+?>

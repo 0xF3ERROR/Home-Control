@@ -1,0 +1,59 @@
+<?php
+
+
+abstract class SystemFinder 
+{
+	/**
+	 * die mysql schnittstelle
+	 *
+	 * @var MySqldb
+	 */
+	protected $MySql = null;
+	
+	public function __construct()
+	{
+		$Controler_Main= Controler_Main::getInstance();
+		$this->MySql= MySqldb::getInstance();
+		$this->MySql->connect();
+	}
+	
+	protected function load($SqlStatment="")
+	{
+		return $this->MySql->executeQuery($SqlStatment);		
+	}
+	
+	
+	/**
+	 * schickt das statment zur datenbank und gibt die ergebnissmenge zurück
+	 *
+	 * @param string $SqlStatment 
+	 * @return array die ergebnissmenge der abfrage
+	 *
+	 */
+	protected function executeQuery($SqlStatment)
+	{
+		return $this->MySql->executeQuery($SqlStatment);
+	}
+	
+	public function mysqlVersion( ) {
+	    
+	    $sql = 'SELECT VERSION( ) AS versionsinfo';
+	
+	    $result = @mysql_query($sql);
+	
+	    $version = @mysql_result( $result, 0, "versionsinfo" );
+	    
+	    $match = explode( '.', $version );
+	    
+	    $vers['txt'] = $version;
+	    
+	    $vers['int'] = sprintf( '%d%02d%02d', $match[0], $match[1], intval( $match[2] ) );
+	    
+	    return $vers;
+	
+	} 
+	
+}
+
+
+?>

@@ -1,0 +1,99 @@
+<?php
+
+/**
+ * class cls_Controler_Backend
+ *
+ * Description for class cls_Controler_Backend
+ *
+ * @author:
+*/
+class Controler_Backend  
+{
+
+	/**
+	 * cls_Controler_Backend constructor
+	 *
+	 * @param 
+	 */
+	function __construct() {
+
+	}
+	
+	
+	public function start()	{
+		$Request= new Request();
+		switch($Request->getAsString('Action'))
+			{						
+			case "SystemStatus":
+				{
+				$this->showSystemStatus();
+				}break;				
+					
+				
+			
+			default:
+				$this->showSystemStatus();
+			}
+	}
+	
+	
+	/**
+	 * 
+	 * 	Systemstatus anzeigen
+	 * 
+	 */	
+	public function showSystemStatus($ErrorString="",$StatusString="")
+		{
+		//if(!Controler_Main::getInstance()->isUserLoggedIn())//if( $this->User->getUserLevel() < BACKEND_USERLEVEL ) 
+		if( Controler_Main::getInstance()->getUserLevel() < BACKEND_USERLEVEL )
+			{
+			$ControlerStart= new Controler_Start();
+			$ControlerStart->start();
+			return false;
+			}
+		$Request= new Request();
+		$SystemInformationFinder= new SystemInformationFinder();
+		$MySql = $SystemInformationFinder->mysqlVersion();
+		$MySqlVersion = $MySql[0]['s_MySqlVersion'];
+		
+		$PHPVersion = phpversion();
+		
+		
+		/*
+		 * 
+$spruch = "Hallo Welt";
+$spruch = str_replace("Welt","Germany",$spruch);
+		 * 
+		 */
+		$WebserverVersion = $_SERVER['SERVER_SOFTWARE'];
+		$WebserverVersion = "<div class='befehlskontainer' >".str_replace(" ","</div><div class='befehlskontainer' >",$ApacheSoftware)."</div>";
+		
+		$WebserverConfig = "<div class='befehlskontainer' >:SERVER_NAME:: ".$_SERVER['SERVER_NAME']."</div><div class='befehlskontainer' >";
+		$WebserverConfig .= ":SERVER_ADDR:: ".$_SERVER['SERVER_ADDR']."</div><div class='befehlskontainer' >";
+		$WebserverConfig .= ":SERVER_PORT:: ".$_SERVER['SERVER_PORT']."</div><div class='befehlskontainer' >";
+		$WebserverConfig .= ":REMOTE_ADDR:: ".$_SERVER['REMOTE_ADDR']."</div><div class='befehlskontainer' >";
+		$WebserverConfig .= ":DOCUMENT_ROOT:: ".$_SERVER['DOCUMENT_ROOT']."</div><div class='befehlskontainer' >";
+		$WebserverConfig .= ":SERVER_ADMIN:: ".$_SERVER['SERVER_ADMIN']."</div>";
+		
+		
+		
+		
+		$Template=Template::getInstance("tpl_BE_SystemStatus.php");  
+		$Template->assign("UserId",Controler_Main::getInstance()->getUser()->getId()); 
+		$Template->assign("WebserverConfig",$WebserverConfig); 
+		$Template->assign("WebserverVersion",$WebserverVersion); 
+		$Template->assign("PHPVersion",$PHPVersion); 
+		$Template->assign("MySqlVersion",$MySqlVersion); 
+		
+		// Userdaten holen
+		$User=Controler_Main::getInstance()->getUser();
+		
+		
+		
+		$Template->render();
+	}
+	
+		
+}
+
+?>

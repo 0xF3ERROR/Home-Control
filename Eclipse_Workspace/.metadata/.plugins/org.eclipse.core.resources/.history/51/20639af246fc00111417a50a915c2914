@@ -1,0 +1,19 @@
+<?php
+include("tpl_Header.php");
+
+
+/* TODO: Browsererkennung
+ * Hier sollte der Browser des Besuchers erkannt werden.
+ * Interressante Daten wären:
+ * - Browser-Engine
+ * - Browser-Version
+ * - Auflösung des Anzeigenbereiches
+ */
+?>
+
+				<H1>:T_START_TEXT:</H1>
+
+
+<?php
+include("tpl_Footer.php");
+?>

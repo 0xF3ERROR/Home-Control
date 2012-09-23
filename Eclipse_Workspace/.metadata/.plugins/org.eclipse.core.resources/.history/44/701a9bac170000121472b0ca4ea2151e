@@ -1,0 +1,67 @@
+<?php
+
+class SystemInformationFinder extends SystemFinder 
+{
+	
+	/**
+	 * Enter description here...
+	 *
+	 * @param array $RecordSet
+	 * @return UserCollection
+	 */
+	private function doLoad($RecordSet)
+	{
+		$SystemInformationCollection = new SystemInformationCollection();
+		foreach ($RecordSet as $Row)
+		{
+			$SystemInformationCollection->add(new SystemInformation($Row['s_MySqlVersion']));
+		}
+		return $SystemInformationCollection;
+	}
+	
+	/**
+	 * findet alle gruppen
+	 *
+	 * @param 
+	 * @return gruppen This is the return value description
+	 *
+	 */
+	/*
+	public function findAll()
+	{
+		$Sql="select i_ID, s_Name from tbl_usergroups";
+		return $this->doLoad($this->MySql->executeQuery($Sql));
+	}
+	*/	
+	
+	public function mysqlVersion( ) {
+	    
+	    $Sql = 'SELECT VERSION() AS s_MySqlVersion';
+	
+	    $result = $this->MySql->executeQuery($Sql);
+	
+	    $version = @mysql_result( $result, 0, "s_MySqlVersion" );
+	    
+	    $match = explode( '.', $version );
+	    
+	    $vers['txt'] = $version;
+	    
+	    $vers['int'] = sprintf( '%d%02d%02d', $match[0], $match[1], intval( $match[2] ) );
+	    
+	    return $vers;
+	
+	    
+	    
+	    
+	    
+		//return  $this->MySql->executeQuery($Sql);
+	} 
+	
+	
+	
+	
+	
+}
+
+
+?>

@@ -1,0 +1,183 @@
+<?php
+class USBForAll extends Device
+{	
+	public function getHTML($Action="")
+	{
+		switch($Action)
+		{
+			case "showAddNewDevice":
+				return "					<h1>:T_DEVICE_ADD_NEW:</h1>				
+					<div id='Befehle_anzeigen'>
+						<div class='gruppenkontainer'>
+							<form action='index.php?Section=Devices&amp;Action=addNewDevice' name='form' method='POST' target=''>
+								<fieldset class='BIM_Group_fieldset'>
+									<legend>:T_DEVICE_DATA:</legend>
+									<div class='befehlskontainer' >			
+										Ein neues USB4all Interface hinzufügen
+									</div>							
+									<div class='befehlskontainer' >			
+										:T_DEVICE_NAME:: <input type='Text' name='tb_DeviceName' value='".$this->Name."' size='' maxlength='25'>
+									</div>								
+									<div class='befehlskontainer' >									
+										:T_DEVICE_TYP:: <input type='Text' name='tb_DeviceTyp' value='".$this->Typ."' size='' maxlength='25'>
+									</div>								
+									<div class='befehlskontainer' >
+										:T_DEVICE_VERSION:: <input type='Text' name='tb_DeviceVersion' value='".$this->Version."' size='' maxlength='25'>
+									</div>								
+									<div class='befehlskontainer' >									
+										:T_DEVICE_IP:: <input type='Text' name='tb_DeviceIP' value='".$this->IP."' size='' maxlength='90'>
+									</div>								
+									<div class='befehlskontainer' >									
+										:T_DEVICE_PORT: <input type='Text' name='tb_DevicePort' value='".$this->Port."' size='' maxlength='90'>
+									</div>								
+									<div class='befehlskontainer' >									
+										:T_DEVICE_STAT: <input type='Text' name='tb_DeviceStat' value='".$this->Status."' size='' maxlength='90'>
+									</div>							
+									<div class='buttonkontainer' >		
+										<div class='buttonbar'>	
+											<p class='buttonbar_button'><input type='Submit' class='submit' name='btn_DeviceAdd' value=':T_ADD:'></p>
+											<p class='buttonbar_link'><a href='index.php?Section=Devices&amp;Action=DeviceManagement'>:T_BACK:</a></p>											
+										</div>
+									</div>										
+								</fieldset>
+							</form>		
+						</div>
+					</div>";
+				
+			case "showEditDevice":
+				 $Output = "					<h1>:T_DEVICE_ADD_NEW:</h1>				
+					<div id='Befehle_anzeigen'>
+						<div class='gruppenkontainer'>
+							<form action='index.php?Section=Devices&amp;Action=updateDevice' name='form' method='POST' target=''>
+								<fieldset class='BIM_Group_fieldset'>
+									<legend>:T_DEVICE_DATA:</legend>
+									<div class='befehlskontainer' >			
+										:T_DEVICE_NAME:: <input type='Text' name='tb_DeviceName' value='".$this->Name."' size='' maxlength='25'>
+									</div>								
+									<div class='befehlskontainer' >									
+										:T_DEVICE_TYP:: <input type='Text' name='tb_DeviceTyp' value='".$this->Typ."' size='' maxlength='25'>
+									</div>								
+									<div class='befehlskontainer' >
+										:T_DEVICE_VERSION:: <input type='Text' name='tb_DeviceVersion' value='".$this->Version."' size='' maxlength='25'>
+									</div>								
+									<div class='befehlskontainer' >									
+										:T_DEVICE_IP:: <input type='Text' name='tb_DeviceIP' value='".$this->IP."' size='' maxlength='90'>
+									</div>								
+									<div class='befehlskontainer' >									
+										:T_DEVICE_PORT: <input type='Text' name='tb_DevicePort' value='".$this->Port."' size='' maxlength='90'>
+									</div>								
+									<div class='befehlskontainer' >									
+										:T_DEVICE_STAT:"; 
+				if($this->Status == 1) {
+					$Output .= " 										<input type='radio' name='tb_DeviceStatus' value='0' size='' maxlength='90'>
+										<input type='radio' name='tb_DeviceStatus' value='1' size='' maxlength='90' checked='checked'>";
+					}
+				else {
+					$Output .= " 										<input type='radio' name='tb_DeviceStatus' value='0' size='' maxlength='90' checked='checked'>
+										<input type='radio' name='tb_DeviceStatus' value='1' size='' maxlength='90'>";
+					}
+				$Output .= "	
+									</div>							
+									<div class='buttonkontainer' >		
+										<div class='buttonbar'>	
+											<p class='buttonbar_button'><input type='Submit' class='submit' name='btn_DeviceUpdate' value=':T_UPDATE:'></p>
+											<p class='buttonbar_link'><a href='index.php?Section=Devices&amp;Action=DeviceManagement'>:T_BACK:</a></p>											
+										</div>
+									</div>								
+								</fieldset>
+							</form>		
+						</div>
+					</div>";
+				return	$Output;	
+					
+			default:
+				/*
+				 *     <input type="radio" name="Zahlmethode" value="Mastercard"> Mastercard<br>
+    <input type="radio" name="Zahlmethode" value="Visa"> Visa<br>
+    <input type="radio" name="Zahlmethode" value="AmericanExpress"> American Express
+    
+    
+    
+    									<div class='befehlskontainer' >									
+										:T_DEVICE_STAT: ";
+				if($this->DeviceStat) {
+					$Output = " 										<input type='radio' name='tb_DeviceStat' value=':T_OFF:' size='' maxlength='90'>
+										<input type='radio' name='tb_DeviceStat' value=':T_ON:' size='' maxlength='90' checked='checked'>";
+					}
+				else {
+					$Output = " 										<input type='radio' name='tb_DeviceStat' value=':T_OFF:' size='' maxlength='90' checked='checked'>
+										<input type='radio' name='tb_DeviceStat' value=':T_ON:' size='' maxlength='90'>";
+					}
+				$Output = "							</div>							
+									<div class='buttonkontainer' >	
+									
+									
+				 * 				
+				 */
+				return "					<div id='Befehle_anzeigen'>
+						<div class='gruppenkontainer'>
+							<form action='index.php?Section=Devices&amp;Action=updateDevice' name='form' method='POST' target=''>
+								<fieldset class='BIM_Group_fieldset'>
+									<legend>:T_DEVICE_DATA:</legend>
+									<div class='befehlskontainer' >			
+										:T_DEVICE_ID:: ".$this->getID()."
+									</div>
+									<div class='befehlskontainer' >			
+										:T_DEVICE_NAME:: ".$this->getTyp()."
+									</div>
+									<div class='befehlskontainer' >			
+										:T_DEVICE_NAME:: ".$this->getTyp()."
+									</div>
+									<div class='befehlskontainer' >			
+										:T_DEVICE_VERSION:: ".$this->getVersion()."
+									</div>
+									<div class='befehlskontainer' >			
+										:T_DEVICE_IP:: ".$this->getIP()."
+									</div>
+									<div class='befehlskontainer' >			
+										:T_DEVICE_PORT:: ".$this->getPort()."
+									</div>
+									<div class='befehlskontainer' >			
+										:T_DEVICE_STAT:: ".$this->getStatus()."
+									</div>									
+									<div class='buttonkontainer' >		
+										<div class='buttonbar'>	
+											<p class='buttonbar_link'>
+												<a href='index.php?Section=Devices&amp;Action=updateDeviceStat&amp;DeviceID=".$this->getID()."&amp;DeviceStat=".$this->getStatus()."'>Stat: ".$this->getStatus()."</a>
+											</p>
+											<p class='buttonbar_link'>
+												<a href='index.php?Section=Devices&amp;Action=showEditDevice&amp;DeviceID=".$this->getID()."'>:T_EDIT:</a>
+											</p>	
+											<p class='buttonbar_link'>
+												<a href='index.php?Section=Devices&amp;Action=deleteDevice&amp;DeviceID=".$this->getID()."'>:T_DELETE:</a>
+											</p>											
+										</div>
+									</div>								
+								</fieldset>
+							</form>		
+						</div>
+					</div>";				
+		}
+	}	
+	
+	
+	public static function getEmptyInstance()
+	{
+		return new Device(0,"","","","",0,0,"TX","RX");
+	}	
+	
+	public function execute($CommandString)
+	{
+		return $CommandString;	
+	}
+
+}
+
+
+
+
+
+
+
+
+?>

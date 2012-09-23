@@ -1,0 +1,344 @@
+/*##############################################################################
+ * allgemeine Sachen
+ */
+html, body {
+    height:                 100%;
+}
+
+* {
+    margin:                 0;
+    padding:                0;
+}
+
+body {
+    font-family:            Verdana, Adobe Helvetica, Helvetica, sans-serif;
+    font-size:              62.5%;
+    background-image:       url(../images/site_background.gif);
+    background-position:    top center;
+    background-color:       #142A02;
+}
+
+a img {
+    text-decoration:        none;
+    border:                 none;
+}
+
+
+legend
+{
+    margin-left:            1em;
+    padding:                2px;
+}
+
+fieldset
+{
+    margin-bottom:          1em;
+    padding:                0.5em;
+}
+
+label
+{
+    display:                block;
+}
+.labelinline
+{
+    display:                inline;
+}
+.submitbutton
+{
+    margin-top:             1em;
+}
+input
+{
+    margin-bottom:          0.5em;
+}
+form
+{
+    margin-bottom:          1em;
+}
+.checkbox
+{
+    margin-bottom:          0;
+}
+button
+{
+    padding:                2px;
+}
+/*##############################################################################
+* Fonts
+*/
+h1
+{
+    font-size:              2em;
+} 
+h3
+{
+   font-size:              1.2em; 
+} 
+h1, h2, h3, h4, h5, h6
+{
+    margin-bottom:          1em;
+}
+
+p
+{
+    margin-bottom:          1em; 
+}
+/*##############################################################################
+ * "Body"-Div um die gesamte Seite und div um alles zum Zentrieren
+ */
+#body {
+    position:               relative;
+    background-image:       url(../images/content_background.gif);
+    background-position:    center 227px;
+    background-repeat:      repeat-y;
+    min-height:             100%;
+}
+
+#contentcontainer {
+    width:                  990px;
+    margin:                 0 auto;
+    min-height:             100%;
+    padding-top:            250px;
+    position:               relative;
+}
+
+
+/*##############################################################################
+ * Head
+ */
+#head {
+    position:               absolute;
+    top:                    0;
+    text-align:             center;
+    width:                  100%;
+}
+
+#head img {
+    margin-left:            105px;
+}
+
+/*##############################################################################
+ * Navi
+ */
+#navi{
+    list-style-type:        none;
+    position:               absolute;
+    left:                   -15px;
+}
+
+#navi img {
+    display:                block;
+}
+
+#navi a:hover img {
+    visibility:             hidden;
+}
+
+#navi li {
+    background-repeat:      no-repeat;
+}
+
+#navi #news { background-image:url(../images/navi/hover/navi_komplett_03.png); }
+#navi #catering { background-image:url(../images/navi/hover/navi_komplett_05.png); }
+#navi #server { background-image:url(../images/navi/hover/navi_komplett_06.png); }
+#navi #downloads {background-image:url(../images/navi/hover/navi_komplett_07.png); }
+#navi #Gallery {background-image:url(../images/navi/hover/bilder_active.gif); }
+#navi #turnier {background-image:url(../images/navi/hover/navi_komplett_08.png); }
+#navi #faq {background-image:url(../images/navi/hover/navi_komplett_09.png); }
+#navi #admin {background-image:url(../images/navi/hover/navi_komplett_10.png); }
+#navi #nachrichten {background-image:url(../images/navi/hover/navi_komplett_12.png); }
+#navi #NextLan {background-image:url(../images/navi/hover/navi_komplett_14.png); }
+#navi #Forum {background-image:url(../images/navi/hover/navi_komplett_15.png); }
+#navi #Gbook {background-image:url(../images/navi/hover/navi_komplett_16.png); }
+#navi #Partner {background-image:url(../images/navi/hover/navi_Partner.png); }
+#navi #Profil {background-image:url(../images/navi/Profil2.png); }
+/*##############################################################################
+ * Footer
+ */
+#footercontainer {
+    /*position:               absolute;*/
+    bottom:                 10px;
+    /*width:                  100%;*/
+}
+
+#footer {
+    text-align:             center;
+    margin-left:            50px;
+}
+
+/*##############################################################################
+ * Content
+ */
+#content {
+    width:                  758px;
+    background-color:       #c7ae30;
+    margin-left:            143px;
+    min-height:             100%;
+    padding:                0 10px 60px 10px;
+    list-style-type:        none;
+    font-size:              1.2em;
+}
+#links
+{
+    list-style-type:        none;
+}
+#logo img
+{
+    max-height:             60px;
+    vertical-align:         top;
+}
+
+#content a
+{
+    font-size:              1.3em;
+    text-decoration:        none;
+}
+
+.signatur
+{
+	font-size:10px;
+	font-style:italic;
+}
+
+
+.table
+{
+
+	background-color:#000000;
+}
+
+.row
+{
+	background-color:#000000;
+}
+
+.header
+{
+	color:#FFFFFF;
+	/**/
+	font-size:18px;
+	font-weight:bold;
+	background-image:url(../images/site_background2.gif);
+}
+
+.headerSmall
+{
+	color:#FFFFFF;
+	font-size:13px;
+	font-weight:bold;
+	background-image:url(../images/site_background2.gif);
+}
+
+.content
+{
+	background-color:rgb(255, 255, 224);
+}
+
+.table tr td
+{
+	background-color:rgb(255, 255, 224);
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
+.contentBold
+{
+	font-weight:bold;
+}
+
+
+
+ul
+{
+    list-style-type:        none;
+}
+
+dd
+{
+    margin-bottom:          10px;
+}
+
+.DivOptionGroup
+{
+	background-color:#FFFFFF;
+}
+
+.DivOptionPoint
+{
+	background-color:#FFFFFF;
+	border-style:solid;
+	border-width:1;
+   	border-color:#BFBFBF;
+}
+
+.DivCloseButton
+{
+	color:#0000FF;
+	font-weight:bold;
+	font-size:8px;
+}
+
+
+.newsDate
+{
+	float:left;
+	width:90px;
+}
+
+
+.SquadName
+{
+	float:left;
+	width:250px;
+}
+
+.SquadMemberCount
+{
+	text-align:left;
+	width:50px;
+}
+
+.SquadContainer
+{
+	margin-top: 5px;
+}
+
+
+.TurnierName
+{
+	float:left;
+	width:200px;
+}
+
+.TurnierMemberCount
+{
+	float:left;
+	width:80px;
+}
+
+.TurnierAnmeldeSchluss
+{
+	width:80px;
+}
+
+
+.TurnierDetails
+{
+	width:350px;
+	float:left;
+	height:300px;
+}
+
+.TurnierAtributes
+{
+	width:120px;
+	float:left;
+}
+
+.TurnierSquadsContent
+{
+	height:300px;
+
+}
+

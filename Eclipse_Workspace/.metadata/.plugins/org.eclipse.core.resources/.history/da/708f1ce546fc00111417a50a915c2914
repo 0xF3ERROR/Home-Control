@@ -1,0 +1,28 @@
+<?php
+include("tpl_Header.php");
+?>
+				<div id="displayLinks">
+					<table id="main_menue_nav" align="center" >
+						<tr>
+							<td><a href='index.php?Section=Backend&amp;Action=SystemStatus'>:T_SYSTEM_STATE:</a></td>
+							<td><a href='index.php?Section=Users&amp;Action=UserManagement'>:T_USER_MANAGEMENT:</a></td>
+							<td><a href='index.php?Section=Groups&amp;Action=GroupManagement'>:T_GROUP_MANAGEMENT:</a></td>
+							<td><a href='index.php?Section=Menues&amp;Action=MenueManagement'>:T_MENUE_MANAGEMENT:</a></td>
+							<td><a href='index.php?Section=Contents&amp;Action=ContentManagement'>:T_CONTENT_MANAGEMENT:</a></td>
+							<td><a href='index.php?Section=Devices&amp;Action=DeviceManagement'>:T_DEVICE_MANAGEMENT:</a></td>
+						</tr>
+					</table>
+				</div>
+				<br>
+				<h1>:T_SYSTEM_STATE:</h1>
+				<br />
+				<h5>:T_USER_NAME:: <?php echo $this->User->getName(); ?> </h5>	
+				<h5>:T_MAIL::  <?php echo $this->User->getMail(); ?> </h5>	
+				<br />
+				<br />
+				<br />
+				<p>Systemstatus Anzeigen</p>
+				<br />
+<?php
+include("tpl_Footer.php");
+?>

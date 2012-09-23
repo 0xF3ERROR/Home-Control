@@ -1,0 +1,276 @@
+; Dies ist ein Beispiel für eine Konfigurationsdatei
+; Kommentare beginnen wie in der php.ini mit ';'
+
+
+[GENERAL]
+:T_START_TEXT: = Browsererkennung inaktiv ^^
+:T_HOME: = Home
+:T_NAME: = Name
+:T_UP: = Hoch
+:T_DOWN: = Runter
+:T_ABOUT: = Impressum
+:T_HELP: = Hilfe
+:T_LOGOUT: = Abmelden
+:T_ACCOUNT: = Account
+:T_BACKEND: = Verwaltung
+:T_BACK: = Zurück
+:T_HELP: = Hilfe
+:T_ADD: = Hinzufügen
+:T_EDIT: = Ändern
+:T_UPDATE: = Aktualisieren
+:T_REMOVE: = Entfernen
+:T_DELETE: = Löschen
+:T_DELETE_ALL: = Alle Löschen
+:T_DELETE_CONFIRM: = Wollen Sie dieses Gerät wirklich löschen?
+:T_DELETE_ERROR: = Es sind noch Verknüpfungen vorhanden
+:T_GET_RANDOM_PASSWORD: = Ein zufälliges Passwort generieren
+
+
+[System]
+:T_SYSTEM_STATE: = System Status
+:T_SYSTEM_STATE_TXT: = Grundlegenden Systeminformationen und Einstellungen
+:T_SYSTEM_INFORMATION: = System-Informationen
+:T_SYSTEM_APACHE_VERSION: = Apache-Version
+:T_SYSTEM_PHP_VERSION: = PHP-Version
+:T_SYSTEM_MYSQL_VERSION: = MySql-Version
+:T_SYSTEM_WEBSERVER_INFORMATION: = Webserver Informationen
+:T_SYSTEM_WEBSERVER_CONFIGURATION: = Webserver Konfiguration
+:T_SYSTEM_WEBSERVER_VERSION: = Webserver Version
+:T_SYSTEM_DATABASE_INFORMATION: = Datenbankserver Informationen
+:T_SERVER_NAME: = Server Name
+:T_SERVER_VERSION: = Version
+:T_SERVER_ADDR: = Server Adresse
+:T_SERVER_PORT: = Server Port
+:T_REMOTE_ADDR: = Remote Adresse
+:T_DOCUMENT_ROOT: = Verzeichniswurzel
+:T_SERVER_ADMIN: = Administrator Mailadresse
+
+
+
+
+
+[Datendarstellung in Datenbank]
+:T_TEXT: = Text
+:T_BUTTON: = Schalter
+:T_TEMPERATURE_AS: = Temperatur in
+:T_AIR_PRESSURE_AS: = Luftdruck in
+:T_I_FRAME: = iFrame
+:T_HUMIDITY_AS: = Luftfeuchtigkeit in
+
+
+
+[Menue]
+:T_MENUE_MANAGEMENT: = Menüs
+:T_MENUE_MANAGEMENT_TXT: = Erstellung und Bearbeitung der Menüstruktur
+:T_MENUE_ADD: = Neues Menü
+:T_MENUE_ADD_NEW: = Neues Menü hinzufügen
+:T_MENUE_EDIT: = Menü bearbeiten
+:T_MENUE_ID: = Index
+:T_MENUE_NAME: = Menüname
+:T_MENUE_LEVEL: = Ebene
+:T_MENUE_RIGHTS_ID: = Rechte Index
+:T_MENUE_DATA: = Menü-Name
+:T_MENUE_LINKS: = Menü-Vorschau - Um einen Link aus dem Menü zu entfernen einfach anklicken
+:T_MENUE_LINK_ADD: = Verknüpfung hinzufügen
+:T_MENUE_LINK_NAME: = Angezeigter Name
+:T_MENUE_CONTENT: = Menü-Inhalt
+:T_MENUE_CONTENT_ADD: = Menü-Inhalt hinzufügen
+:T_MENUE_LINK_ERROR1: = Es sind keine Menüverknüpfungen vorhanden.
+:T_MENUE_CONTENT_ERROR1: = Es sind keine Inhalte vorhanden.
+:T_MENUE_ERROR1: = Dieser Menüname ist zu kurz
+:T_MENUE_ERROR2: = Dieser Menüname ist bereits vorhanden
+:T_MENUE_ADD_LINK: = Menüverknüpfung hinzufügen
+:T_MENUE_ADD_LINKS: = Verfügbare Menüs
+:T_MENUE_GROUP_NAME: = Name
+:T_MENUE_GROUP_NAME_ADD: = Menü-Gruppen-Name hinzufügen
+:T_MENUE_GROUP_ERROR1: = Der eingegeben Name ist zu kurz
+:T_MENUE_GROUP_ERROR2: = Der eingegeben Name ist bereits vorhanden
+:T_MENUE_GROUP_DISPLAY_ERROR1: = Keine Menügruppen vorhanden
+:T_MENUE_GROUP_ADD: = Menü-Gruppe hinzufügen
+:T_MENUE_PREVIEW: = Menü-Vorschau
+:T_MENUE_GROUP_EDIT: = Menü-Gruppen bearbeiten 
+:T_MENUE_LIST_ALL: = Menüdaten 
+:T_MENUE_INSERT: = Neuen Menüeintrag hinzufügen
+:T_MENUE_ADD_NEW_STATUS: = Das Menü wurde erfolgreich hinzugefügt
+:T_MENUE_ADD_NEW_ERROR: = Fehler das Menü wurde nicht hinzugefügt
+
+
+
+
+
+
+
+
+
+
+
+[Content]
+:T_CONTENT_MANAGEMENT: = Inhalte
+:T_CONTENT_MANAGEMENT_TXT: = Erstellung und Bearbeitung der Inhalte
+:T_CONTENT_ADD: = Neuer Inhalt
+:T_CONTENT_ADD_NEW: = Neuen Inhalt hinzufügen
+:T_CONTENT_EDIT: = Inhalt bearbeiten
+:T_CONTENT_ID: = Index
+:T_CONTENT_NAME: = Inhaltname
+:T_CONTENT_LEVEL: = Ebene
+:T_CONTENT_RIGHTS_ID: = Inhalt Index
+:T_CONTENT_DATA: = Inhaltsdaten
+:T_CONTENT_Commands: = Befehlsverknüpfungen
+:T_CONTENT_COMMAND_ADD: = Befehl hinzufügen
+:T_CONTENT_CONTENT: = Inhalte
+:T_CONTENT_CONTENT_ADD: = Inhalt hinzufügen 
+:T_CONTENT_GROUP_DELETE_CONFIRM: = Wollen Sie diese Menü-Gruppe wirklich löschen?
+:T_CONTENT_DELETE_CONFIRM: = Wollen Sie diesen Menü-Inhalt wirklich löschen?
+:T_LINK_DELETE_CONFIRM: = Wollen Sie diese Menüverknüpfung wirklich löschen?
+
+
+
+[Command]
+:T_COMMAND_ID: = Index
+:T_COMMAND_CONTENT_ID: = ContentID
+:T_COMMAND_NAME: = Name
+:T_COMMAND_OPTION: = Option
+:T_COMMAND_OPTION_ID: = DisplayID
+:T_COMMAND_MANAGEMENT: = Befehlsverwaltung
+:T_COMMAND_MANAGEMENT_TXT: = Erstellung und Bearbeitung der Befehle
+:T_COMMAND_ADD_NEW: = Einen neuen befehl hinzufügen
+:T_COMMAND_DATA: = Befehlsdaten
+:T_COMMAND_STATUS: = Befehlsstatus
+:T_COMMAND_EXECUTE: = Komando
+:T_COMMAND_DEVICE_ID: = Gräte Index
+:T_COMMAND_DEVICE_NAME: = Gerätename
+:T_COMMAND_DELETE_CONFIRM: = Wollen Sie diesen Befehl wirklich löschen?
+
+
+[DEVICE_MANAGEMENT]
+:T_DEVICE_MANAGEMENT: = Geräte
+:T_DEVICE_MANAGEMENT_TXT: = Erstellung und Bearbeitung der Systemschnittstellen
+:T_DEVICE_ADD_NEW: = Neues Gerät hinzufügen
+:T_DEVICE_EDIT: = Gerät bearbeiten
+:T_DEVICE_ID: = ID
+:T_DEVICE_NAME: = Name
+:T_DEVICE_TYP: = Typ
+:T_DEVICE_VERSION: = Version
+:T_DEVICE_IP: = IP
+:T_DEVICE_PORT: = Port
+:T_DEVICE_STAT: = Status
+:T_DEVICE_DATA: = Gerätedaten
+
+
+[LOGIN]
+:T_LOGIN: = Anmelden
+:T_LOGIN_TEXT: = Anmeldung
+:T_LOGIN_ERROR: = Anmeldung ist fehlgeschlagen
+
+
+[TERMS]
+:T_TERMS: = AGB
+:T_TERMS_TEXT1: = Home-Control ist für den privat Gebrauch unentgeldlich.
+:T_TERMS_TEXT2: = Wenn Sie Home-Control gewerblich nutzen möchten, kontaktieren Sie uns.
+
+
+[REGISTER]
+:T_REGISTER: = Registrieren
+:T_REGISTER_SECURITY_CODE:=Sicherheitscode 
+:T_REGISTER_ACCEPT:=Mit der Erstellung eines Accounts akzeptieren Sie die
+:T_REGISTER_ERROR1:=Der Benutzername ist zu kurz
+:T_REGISTER_ERROR2:=Das Passwort ist zu kurz, bitte mindestens 5 Zeichen angeben
+:T_REGISTER_ERROR3:=Das Passwort stimmt nicht überein
+:T_REGISTER_ERROR4:=Diese E-Mail Adresse wird bereits verwendet
+:T_REGISTER_ERROR5:=Es wurde eine fehlerhafte E-Mail Adresse angegeben
+:T_REGISTER_ERROR6:=Die E-Mail-Adresse stimmt nicht überein
+:T_REGISTER_ERROR7:=Der Benutzername ist bereits vergeben
+:T_REGISTER_ERROR8:=Der Account konnte nicht angelegt werden
+:T_REGISTER_ERROR9:=Der Sicherheitscode wurde nicht richtig eingegeben
+:T_REGISTER_ERROR10:=Das Passwort konnte nicht geändert werden
+
+
+[USER]
+:T_USER: = Benutzer
+:T_USER_ID: = Benutzer Index
+:T_USER_NAME: = Benutzername
+:T_USER_DATA: = Benutzerdaten
+:T_USER_ADD: = Neuer Benutzer
+:T_USER_MANAGEMENT: = Benutzerverwaltung
+:T_USER_MANAGEMENT_TXT: = vorhandene Benutzer bearbeiten - Gruppenzugehörigkeit festlegen
+:T_USER_ADD_NEW: = Neuen Benutzer hinzufügen
+:T_USER_EDIT: = Benutzer bearbeiten
+:T_USER_CHANGE_NAME: = Benutzernamen ändern
+:T_USER_CHANGE_EMAIL: = Email Adresse ändern
+:T_USER_EMAIL: = Email Adresse
+:T_USER_CHANGE_PASSWORD: = Passwort ändern
+:T_USER_PASSWORD: = Passwort eingeben
+:T_USER_PASSWORD_CONFIRM: = Passwort bestätigen
+:T_USER_GROUP_EDIT: = Benutzergruppen Zuordnung
+:T_USER_GROUP_NAME: = Name
+:T_USER_GROUP_DELETE_CONFIRM: = Wollen Sie diese Gruppe wirklich löschen?
+:T_USER_DELETE_FROM_GROUP_CONFIRM: = Wollen Sie wirglich den Benutzer aus der Gruppe Löschen?
+:T_USER_DELETE_CONFIRM: = Wollen Sie diesen Benutzer wirklich löschen?
+:T_USER_GROUP_DATA: = Benutzer-Gruppen-Daten
+:T_USER_GROUP_ERROR2: = Der Benutzer-Gruppen-Name ist bereits vergeben
+
+
+:T_USER_PASS_CHANGE_STATUS: = Das Passwort wurde erfolgreich geändert
+:T_USER_UPDATED_NAME_STATUS: = Der Benutzername wurde erfolgreich geändert
+:T_USER_UPDATED_EMAIL_STATUS: = Die Email Adresse wurde erfolgreich geändert
+
+:T_USER_GROUP_INSERT_STATUS: = Der Benutzer wurde zur Gruppe erfolgreich hinzugefügt
+:T_USER_GROUP_DELETE_STATUS: = Der Benutzer wurde aus der Gruppe erfolgreich gelöscht
+:T_USER_NEW_ADDED_STATUS: = Ein neuer Benutzer wurde erfolgreich hinzugefügt
+:T_USER_DELETED_STATUS: = Der Benutzer wurde erfolgreich gelöscht
+
+:T_USER_GROUP_DELETE_RIGHTS_STATUS: = Die Befehlsrechte wurden erfolgreich gelöscht
+:T_USER_GROUP_DELETE_WRITE_STATUS: = Die Schreibrechte wurden erfolgreich gelöscht
+:T_USER_GROUP_INSERT_WRITE_STATUS: = Die Schreibrechte wurden erfolgreich hinzugefügt
+:T_USER_GROUP_INSERT_READ_STATUS: = Die Leserechte wurden erfolgreich hinzugefügt
+:T_USER_GROUP_DELETE_STATUS: = Die Benutzergruppe wurde erfolgreich gelöscht
+:T_USER_GROUP_UPDATED_STATUS: = Die Benutzergruppe wurde erfolgreich aktualisiert
+:T_USER_GROUP_NAME_UPDATED_STATUS: = Die Gruppenname wurde erfolgreich aktualisiert
+:T_USER_GROUP_INSERTED_STATUS: = Die Benutzergruppe wurde erfolgreich hinzugefügt
+:T_USER_GROUP_DELETE_ERROR: = Fehler Die Benutzergruppe ist noch verknüpft
+:T_USER_GROUP_NAME_UPDATED_ERROR: = Fehler Der Gruppenname wurde nicht verändert
+
+
+
+
+[GROUP]
+:T_GROUP: = Gruppe
+:T_GROUP_ID: = Gruppen Index
+:T_GROUP_DATA: = Gruppendaten
+:T_GROUP_NAME: = Gruppenname
+:T_GROUP_MANAGEMENT: = Gruppenverwaltung
+:T_GROUP_ADD: = Neue Gruppe
+:T_GROUP_ERROR1:=Der Gruppenneme ist zu kurz
+:T_GROUP_ERROR2:=Der Gruppenneme ist bereits vergeben
+:T_GROUP_MANAGEMENT_TXT: = Gruppen Verwaltung für die Befehlsausführung und Anzeigefreigabe vorhandener Elemente im System
+:T_GROUP_ADD_NEW: = Neue Gruppe hinzufügen
+:T_GROUP_ADD_USERS: = Benutzer in Gruppe
+:T_GROUP_EDIT: = Gruppe bearbeiten
+:T_GROUP_COMMAND_RIGHT_EDIT: = Befehlsrechte
+:T_ADD_READ: = Anzeigen
+:T_ADD_WRITE: = Ausführen
+:T_DELETE_READ: = nicht Anzeigen
+:T_DELETE_WRITE: = nicht Ausführen
+:T_DELETE_RIGHTS: = entfernen
+
+[PASSWORD]
+:T_PASSWORD: = Passwort
+:T_PASSWORD_RETYPE: = Passwort widerholen
+:T_PASSWORD_CHANGE: = Passwort ändern
+
+
+[MAIL]
+:T_MAIL: = E-Mail
+:T_MAIL_RETYPE: = E-Mail widerholen
+
+
+[ABOUT]
+:T_ABOUT: = Impressum
+:T_ABOUT_NAME: = Andre Bennewitz
+:T_ABOUT_ADRESS: = Boritzer Str. 21
+:T_ABOUT_POSTCODE1: = 01594 Hirschstein
+:T_ABOUT_POSTCODE2: = OT Heyda
+:T_ABOUT_COUNTRY: = Deutschland
+:T_ABOUT_TEXT: = Dies ist ein privates Projekt. Vielen Dank an alle Helfer.
+
+

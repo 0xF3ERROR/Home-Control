@@ -1,0 +1,742 @@
+"General"
+{
+"ProjectType" = "local"
+"AutoLoadTemplate" = "%s.php;class.%s.php;"
+"IncludeDirs" = ""
+}
+"Configurations"
+{
+    "Lokal|PHP 5"
+    {
+    }
+    "Staging|PHP 5"
+    {
+    }
+    "Produktion|PHP 5"
+    {
+    }
+}
+"Files"
+{
+    "img\\dummy_1.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\26.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "view\\tpl_Login.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "class\\DatabaseObjects"
+    {
+    "ProjRelPath" = "T"
+    }
+    "Data\\9d986691e66e392ab93106ade88b3241"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\files\\Zip.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\footer_pic.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "css\\ie6.css"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\24.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "css"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\lefti.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "css\\ie.css"
+    {
+    "ProjRelPath" = "T"
+    }
+    "view\\tpl_Header.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\22.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\files\\Rar.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "class\\DatabaseObjects\\cls_DataManager.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\files\\Msi.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\files\\Thumbs.db"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\right_footer_pic.png"
+    {
+    "ProjRelPath" = "T"
+    }
+    "css\\ielte6.css"
+    {
+    "ProjRelPath" = "T"
+    }
+    "view\\tpl_EnterPass.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\20.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\MenuButton.png"
+    {
+    "ProjRelPath" = "T"
+    }
+    "thumb\\Data\\9d986691e66e392ab93106ade88b3241\\Bilder\\01122008138.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\files\\box.png"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\files\\None.JPG"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\files\\Avi.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\18.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "class\\objects\\cls_ParseAbleObject.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "view\\tpl_AGB.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "view\\tpl_Impressum.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "view\\tpl_Download.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "js"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\files\\Zip.png"
+    {
+    "ProjRelPath" = "T"
+    }
+    "class"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\16.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "thumb\\Data\\9d986691e66e392ab93106ade88b3241\\Bilder\\13122008149.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "class\\objects\\cls_User.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "css\\gallery.css"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\onered_dot.png"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\14.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "setup\\ByteBox setup.exe"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\files\\rar.png"
+    {
+    "ProjRelPath" = "T"
+    }
+    "thumb\\Data\\9d986691e66e392ab93106ade88b3241\\Bilder\\18122008153.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "thumb\\Data\\9d986691e66e392ab93106ade88b3241\\Bilder\\13122008147.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\files\\xcf.png"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\files\\msi.png"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\37.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "view\\tpl_Footer.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "view\\tpl_Register.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "thumb\\Data\\9d986691e66e392ab93106ade88b3241\\Bilder\\26122008157.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "thumb\\Data\\9d986691e66e392ab93106ade88b3241\\Bilder\\12082008094.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\12.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "thumb\\Data\\9d986691e66e392ab93106ade88b3241\\Bilder\\20092008125.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\9.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "Data"
+    {
+    "ProjRelPath" = "T"
+    }
+    "view\\tpl_HeaderCownload.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "class\\objects\\cls_Template.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "Data\\098f6bcd4621d373cade4e832627b4f6"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\35.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\files\\Folder.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "view\\tpl_Pictures.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\files\\None.png"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\files\\avi.png"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\10.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\7.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\files\\Pdf.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "cfg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "view"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\33.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "css\\print.css"
+    {
+    "ProjRelPath" = "T"
+    }
+    "class\\DatabaseObjects\\cls_UserManager.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\5.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\31.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "class\\logic\\cls_Request.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "thumb\\Data\\9d986691e66e392ab93106ade88b3241\\Bilder\\20092008119.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "class\\objects"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\3.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "class\\db\\cls_mysql.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "js\\jquery-1.7.2.min.js"
+    {
+    "ProjRelPath" = "T"
+    }
+    "class\\objects\\cls_Convert.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\29.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "class\\db"
+    {
+    "ProjRelPath" = "T"
+    }
+    "class\\logic\\cls_basic_download.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\logo_header.png"
+    {
+    "ProjRelPath" = "T"
+    }
+    "thumb\\Data\\9d986691e66e392ab93106ade88b3241\\Bilder\\20092008117.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\dummy_2.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\1.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "class\\logic\\cls_Include.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "class\\logic\\cls_Controler_Download.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\27.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "thumb\\Data\\9d986691e66e392ab93106ade88b3241\\Bilder\\29122008161.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "class\\DatabaseObjects\\cls_SystemManager.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\files\\Folder.png"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile"
+    {
+    "ProjRelPath" = "T"
+    }
+    "view\\tpl_Data.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\files\\sound.png"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\files\\Pdf.png"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\icon.png"
+    {
+    "ProjRelPath" = "T"
+    }
+    "thumb\\Data\\9d986691e66e392ab93106ade88b3241\\Bilder\\29122008159.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "css\\ie7.css"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\25.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "view\\tpl_Profil.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "class\\logic\\cls_Controler_Main.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "class\\db\\cls_mysql_exeption.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "class\\DatabaseObjects\\cls_SystemFinder.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "class\\logic\\cls_Controler_Start.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "class\\logic\\cls_Controler_Music.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\three_dots.png"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\23.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "class\\DatabaseObjects\\cls_UserFinder.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "thumb\\Data\\9d986691e66e392ab93106ade88b3241\\Bilder\\28092008154.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\21.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "thumb\\Data\\9d986691e66e392ab93106ade88b3241\\Bilder\\01122008139.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\files\\Exe.JPG"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\Captcha.png"
+    {
+    "ProjRelPath" = "T"
+    }
+    "thumb\\Data\\9d986691e66e392ab93106ade88b3241\\Bilder\\02082008080.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "class\\logic"
+    {
+    "ProjRelPath" = "T"
+    }
+    "class\\logic\\cls_Controler_Login.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\19.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "css\\base.css"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img"
+    {
+    "ProjRelPath" = "T"
+    }
+    "css\\screen.css"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\17.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\files\\Txt.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "cfg\\cfg.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\15.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "thumb\\Data\\9d986691e66e392ab93106ade88b3241"
+    {
+    "ProjRelPath" = "T"
+    }
+    "class\\objects\\cls_AbstractCollection.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\38.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "thumb\\Data"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\td_hover.png"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\flower2.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\files\\Mpg.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "thumb\\Data\\9d986691e66e392ab93106ade88b3241\\Bilder\\12082008095.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "thumb\\Data\\9d986691e66e392ab93106ade88b3241\\Bilder\\26122008158.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "class\\objects\\cls_Image.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\13.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\files\\Exe.png"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\Thumbs.db"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\yellow_tranzparence.png"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\green_bg.png"
+    {
+    "ProjRelPath" = "T"
+    }
+    "setup"
+    {
+    "ProjRelPath" = "T"
+    }
+    "thumb\\Data\\9d986691e66e392ab93106ade88b3241\\Bilder\\29082008103.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\footer_bg.png"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\36.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "index.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\files"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\11.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\8.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "language\\lang_Ger.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "thumb\\Data\\9d986691e66e392ab93106ade88b3241\\Bilder\\13122008144.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\files\\excel.png"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\34.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\wechselschatten.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\delete.png"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\files\\Txt.png"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\6.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "thumb\\Data\\9d986691e66e392ab93106ade88b3241\\Bilder"
+    {
+    "ProjRelPath" = "T"
+    }
+    "class\\objects\\i_CollectionElements.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\32.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "js\\jquery-ui-1.8.18.custom.min.js"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\4.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\files\\header_icon.png"
+    {
+    "ProjRelPath" = "T"
+    }
+    "thumb"
+    {
+    "ProjRelPath" = "T"
+    }
+    "class\\logic\\cls_Controler_Picture.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\30.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "class\\objects\\cls_UserCollection.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "view\\tpl_Start.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\files\\mpg.png"
+    {
+    "ProjRelPath" = "T"
+    }
+    "js\\lightbox.js"
+    {
+    "ProjRelPath" = "T"
+    }
+    "js\\jquery.smooth-scroll.min.js"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\dummy_3.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "view\\tpl_Music.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\2.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\flower.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "img\\smile\\28.gif"
+    {
+    "ProjRelPath" = "T"
+    }
+    "language"
+    {
+    "ProjRelPath" = "T"
+    }
+}
+"ProjStartupServices"
+{
+}
+"Globals"
+{
+}
+"References"
+{
+}

@@ -1,0 +1,230 @@
+﻿/* -- Allgemeines -- */
+body {
+  background-image:url(../img/green_bg.png);
+  background-repeat:repeat-x;
+  background-position:top;
+  background-color:#000000;
+  color: black;
+  margin: 0;
+  padding: 1%; /* Ein wenig Abstand, damit der Anschein eines Blattes auf der Wand immer erhalten bleibt. */
+  min-width: 640px; /* Bei weniger als 640px Breite soll ein Scrollbalken erscheinen. */
+  font-size: 100.01%; /* umgeht den Font-Size-Bug im Safari, lteren Operas und IE */
+  font-family: verdana, arial, sans-serif ;
+}
+a { color: #FFFFFF; text-decoration: underline; font-weight:bold;}  
+a:hover{color: #000000; text-decoration: none; font-weight:bold;}
+
+.a_zurueck { color: #333333; text-decoration: underline; font-weight:bold;}  
+.a_zurueck:hover{color: #000000; text-decoration: none; font-weight:bold;}
+
+.a_mainmenu{ color: #434343; text-decoration: none; font-weight:bold;}  
+.a_mainmenu:hover{color: #FFFFFF; text-decoration: none; font-weight:bold;}
+
+.a_Standart{ color: black; text-decoration: none; font-weight:bold;}  
+.a_Standart:hover{color: #black; text-decoration: none; font-weight:bold;}
+
+.a_whitelink{ color: #434343; text-decoration: none; font-weight:bold;}  
+.a_whitelink:hover{color: #000000; text-decoration: none; font-weight:bold;}
+
+
+.a_rightside{ color: #434343; text-decoration: none; font-weight:bold;}  
+.a_rightside:hover{color: #000000; text-decoration: none; font-weight:bold;}
+
+.logoimage{border:none; vertical-align:bottom; align:right; margin-top:50px; height:151px; width:348;}
+
+
+
+.skip { /* Da ein wichtiger Screenreader das display: none; auch fr sich versteht und nichts vorliet obwohl das hier sich vor allem an Blinde richtet, muss man es so lsen dass man diesen Link auerhalb des Sichtfeldes bringt. Somit wird er trotzdem vorgelesen. */
+  position: absolute;
+  margin-left: -999px;
+  width: 990px;
+}
+h1 { 
+  font-size: 2.7em;
+  font-weight: normal;
+  line-height: 0.8em;
+  padding: 0.6em 0 0.2em 2%;
+  margin: 0;
+}
+h2, h3, h4 { font-weight: normal; }
+h1, h2, h3, h4, h5, h6 { /* Alle berschriften bekommen eine besondere Farbe, und da sie sehr gro sind, knnen wir es uns erlauben hier eine Schrift mit Serifen zu whlen. Wir spielen hier ein wenig mit Typographie, und entgegen dem Einheitsbrei auf vielen Seiten. */
+  color: #009999;
+  font-family: Calibri;
+}
+img { /* Alle Bilder bekommen einen schnen Rahmen. */
+  border: solid 1px #aaa;
+  padding: 1px;
+  max-width: 95%; /* Gute Browser machen ein zu groes Bild, welches das Design sprengen wrde, entsprechend kleiner. Funktioniert beim IE leider nicht. */
+}
+.fleft { /* Sachen, an denen der Text vorbeiflieen soll, wierden diese Klassen zugewiesen. */
+  float: left;
+  margin: 0 1em 0.2em 0; /* Man sollte einen schnen Abstand whlen, sonst kleben die Sachen so am Text. */
+}
+.fright {
+  float: right;
+  margin: 0 0 0.2em 1em;
+  padding: 1px;
+}
+
+
+/* -- Layoutspezifisches -- */
+#container {
+  font-size: 0.8em; 
+  max-width: 70em; 
+  margin: auto;  /* Seite zentrieren */
+  border: 5px solid #000000; 
+  border-top: 0; /* Ganz oben allerdings wrde es mit dem grauen komisch aussehen, deshalb weg damit. */
+  background: #ffffff;
+
+}
+#footer {
+  clear: both; /* Damit #main mindestens so hoch ausgedehnt wird wie #subnav, falls #subnav lnger sein sollte. */
+ padding-top:10px;
+ /*  padding: 0 20px;*/
+  background-image:url(../img/footer_pic.jpg);
+  background-position:right;
+  background-repeat:repeat-x;
+  text-align:center;
+  vertical-align:bottom;
+  height:30px;
+  width:auto;
+}
+
+/* - Logo bzw. Kopf - */
+#logo {
+  background: url(../img/flower.jpg) 0 0 no-repeat #666666; /* Das Bild mit der Blume hat einen bergang zum Schwarzen das nutzen wir aus. Wir lassen es oben links beginnen und wiederholen es nicht. Dadurch dass die Hintergrundfarbe auch schwarz ist, entsteht der Eindruck als ob das Bild unendlich lang wre. */
+  height: 250px; /* Das Blumenbild ist 64px hoch also whlen wir das auch als hhe fr unseren Kopf. */
+  padding: 0 20px;
+  text-align: right;
+  line-height: 54px;
+  font-size: 54px;
+  overflow: hidden; /* Einzig der Mozilla knnte den Text unverhltnissmig zum Hintergrund verndern. Damit dann wenigstens das Men benutzbar bleibt schneiden wir alles was herausragt ab. */
+  letter-spacing: -3px; /* Wieder ein wenig Typografie damit das Logo besser aussieht. */
+  margin: 0; /* Manche Browser haben das schon voreingestellt aber nicht alle, deshalb vereinheitlichen wir das. */
+  border:none;
+  vertical-align:middle;
+}
+#logo a {
+  color: white; /* Die vorher eingestellte Farbe passt nicht um auch als Logofarbe zu dienen, deshalb whlen wir hier wei. */
+  text-decoration: none;
+}
+#logo a span { /* Der letzte Buchstabe soll invertiert dargestellt werden. */
+  color: black;
+  background: white;
+  padding-right: 0.1em; /* Ein Hack, damit das weie rechts und links genau so breit ist. */
+  font-weight: bold;
+}
+
+/* - Men - */
+
+#menuelist {height:50px; width:100%; background-image:url(../img/wechselschatten.jpg);background-repeat:repeat-x; border-top-color:#FFFFFF; border-top-style:solid; border-top-width:4px;}
+
+#menu {
+  background: #287635;
+ padding: 5px 5%;  /*Je kleiner das Fenster desto kleiner soll auch der Abstand des Mens rechts und links sein. */ 
+  margin: 0;
+  text-align: right;
+  /* color: yellow; Hier definieren wir die Farbe des Menpunktes, der kein Link ist, also den Menpunkt der Seite auf der wir uns gerade befinden. */
+  height:25px;
+}
+#menu li {
+  font-size: 1.2em;
+  display: inline; 
+  list-style-type: none; 
+  border-left: 1px solid white; 
+  padding: 0 10px 0 15px;
+  font-weight: bold;
+}
+#menu li a {
+  color: white;
+  text-decoration: none;
+}
+
+/* - Subnavigation, Rechte Spalte - */
+#subnav {
+  width: 26%; 
+  min-width: 10em;
+  float: right;
+  padding: 70px 1% 1em 1%;
+  margin: 1em 1% 0 1%;
+  border-left: 2px dotted #ffffff;
+  font-size: 0.9em; 
+  vertical-align:middle;
+  background-image:url(../img/yellow_tranzparence.png);
+  background-repeat:no-repeat;
+  background-position:right top;
+}
+#subnav dt {
+  font-size: 1.4em;
+  font-family: Calibri;
+  padding: 0.5em;
+  margin-top: 0.5em;
+  border-top: 2px dotted #ffffff;
+  vertical-align:middle;
+  background-color:#EBEBEB;	
+}
+#subnav dd {
+  padding: 0;
+  margin: 0.4em 0;
+}
+
+/* - Der Hauptinhaltsteil - */
+#main {
+  background: url(../img/three_dots.png) no-repeat 100% 0 #ffffff;
+  padding: 0 31% 0 20px; /* Der rechte Abstand (31%) stellt sicher, dass auch nach dem Umflieen der Subnavigation der Text genau so breit wird wie oben und ein zwei-Spalten Eindruck entsteht. */
+  line-height: 1.5em;
+}
+
+.a_td{
+text-decoration:none;
+text-align:center;
+color:#FFFFFF;
+font-weight:bold;
+}
+
+.a_td:hover{
+text-decoration:none;
+text-align:center;
+}
+
+label.formular{
+	font-size:12px;
+	color:#000000;
+	vertical-align:middle;
+	}
+hr.hr{color:#33CCCC}	
+
+dt.dt{ color:#009999;}
+
+.dot{border:none; vertical-align:bottom; width:16px; height:16px;}
+
+.table_menue{float:right; vertical-align:middle; margin-top:5px; height:40px; width:40%; border:0px;}
+	
+	
+.link
+{
+	color: #434343;
+	text-decoration: none; 
+	font-weight:bold;
+	
+}
+
+
+.DataTable
+{
+	width:80%;
+}
+
+
+.MenuButton
+{
+	float:left;
+	background-image: url(../img/MenuButton.png);
+	width:90px;
+	margin-right:10px;
+}
+.MenuButton a
+{
+	color:white;
+	margin-left:7px;
+}

@@ -1,0 +1,81 @@
+<?php 
+
+include("tpl_Header.php");
+
+if($this->ErrorString)
+	{
+	echo "	<div id='ErrorStringContainer'><p>".$this->ErrorString."</p></div>";
+	}
+if($this->StatusString)
+	{
+	echo "	<div id='StatusStringContainer' align=center><p>".$this->StatusString."</p></div>";
+	}
+?>
+	<div id='middle'>
+		<div id='m_o_1_sp'></div>
+		<div id='m_m_1_sp'>
+			<div id='m_m_1_sp_inhalt' align='center'>
+			
+				<h1>:T_USER_ADD:</h1>				
+				<div id='Befehle_anzeigen'>
+					<div class='gruppenkontainer'>
+						<form action='index.php?Section=Users&amp;Action=addNewUser' name='form' method='POST' target=''>
+							<fieldset class='BIM_Group_fieldset'>
+								<legend>:T_USER_DATA:</legend>
+								<div class='befehlskontainer' >			
+									:T_USER_NAME:: <input type='Text' name='tb_Name' value='<?php echo $this->Name; ?>' size='' maxlength='25'>
+								</div>								
+								<div class='befehlskontainer' >			
+									:T_PASSWORD:: <input type='Password' name='tb_Pass' value='' size='' maxlength='25'>
+								</div>								
+								<div class='befehlskontainer' >			
+									:T_PASSWORD_RETYPE:: <input type='Password' name='tb_PassConfirme' value='' size='' maxlength='25'>
+								</div>								
+								<div class='befehlskontainer' >			
+									:T_MAIL:: <input type='Text' name='tb_Mail' value='<?php echo $this->MyMail; ?>' size='' maxlength='90'>
+								</div>								
+								<div class='befehlskontainer' >			
+									:T_MAIL_RETYPE: <input type='Text' name='tb_MailConfirme' value='<?php echo $this->MyMail; ?>' size='' maxlength='90'>
+								</div>								
+								<div class='buttonkontainer' >		
+									<div class='buttonbar'>	
+										<p><input type='Submit' class='submit' name='btn_Register' value=':T_ADD:'></p>
+										<p class='buttonbar_link'><a href='index.php?Section=UserGroups&amp;Action=UserGroupManagement'>:T_BACK:</a></p>											
+									</div>
+								</div>										
+							</fieldset>
+						</form>		
+					</div>
+			
+			
+				<div align="center">
+					<h1>:T_USER_ADD:</h1>			
+					<form action='index.php?Section=Users&amp;Action=addNewUser' name='form' method='POST' target=''>
+						:T_USER_NAME:: <input type='Text' name='tb_Name' value='<?php echo $this->Name; ?>' size='' maxlength='25'>
+						<br />
+						:T_PASSWORD:: <input type='Password' name='tb_Pass' value='' size='' maxlength='25'>
+						<br />
+						:T_PASSWORD_RETYPE:: <input type='Password' name='tb_PassConfirme' value='' size='' maxlength='25'>
+						<br />
+						:T_MAIL:: <input type='Text' name='tb_Mail' value='<?php echo $this->MyMail; ?>' size='' maxlength='90'>
+						<br />
+						:T_MAIL_RETYPE: <input type='Text' name='tb_MailConfirme' value='<?php echo $this->MyMail; ?>' size='' maxlength='90'>
+						<br />
+						<br />
+						<p><input type='Submit' class='submit' name='btn_Register' value=':T_REGISTER:'></p>
+						<br />
+					</form>					
+				</div>
+				<div class="backbutton">
+					<a href='index.php?Section=Users&amp;Action=UserManagement'>:T_BACK:</a>
+				</div>
+				
+				
+				
+			</div>
+		</div>
+		<div id="m_u_1_sp"></div>
+	</div>
+<?php
+include("tpl_Footer.php");
+?>
